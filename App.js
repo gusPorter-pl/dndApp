@@ -1,11 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import React from 'react';
 import {
   SafeAreaView,
@@ -14,101 +6,79 @@ import {
   View,
   Text,
   StatusBar,
+  Button
 } from 'react-native';
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+const App = () => {
 
-const App: () => React$Node = () => {
+  let players = [
+    {name: "Bizzie", initiative: 20, colour: "#cf0000"},
+    {name: "Xaylor", initiative: 14, colour: "#00cf00"},
+    {name: "Salrakir", initiative: 22, colour: "#00cf00"},
+    {name: "Mrtlvnjr", initiative: 8, colour: "#00cf00"},
+    {name: "Pop Princess", initiative: 17, colour: "#00cf00"}
+  ];
+  players.sort((a, b) => b.initiative - a.initiative);
+
+
   return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
+    <View style={{ height: '100%' }}>
+      <View style={[styles.centre, styles.header]}>
+        <Text style={[styles.headerText]}>Initiative Tracker</Text>
+      </View>
+      <View style={[styles.body]}>
+        {players.map((player) => {
+          return (
+            <View style={[styles.innerBody]}>
+              <View style={{flex: 3, paddingRight: 5, justifyContent: 'center'}}>
+                <Text adjustsFontSizeToFit numberOfLines={1} style={[styles.centre, { fontSize: 18 }]}>
+                  {player.name}
+                </Text>
+              </View>
+              <View style={{flex: 2}}>
+                <Button title="REACTION" color={player.colour} />
+              </View>
+              <View style={{justifyContent: 'center', paddingLeft: 5}}>
+                <Text style={[styles.setSize, { fontSize: 18, textAlign: 'right', alignItems: 'center'}]}>{player.initiative}</Text>
+              </View>
             </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </>
+          )
+        })}
+      </View>
+    </View>
+  // FLEYDIRE WATERS FREEZING OVER???
   );
 };
 
 const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
+  headerText: {
+    fontSize: 25,
+    color: '#ffffff'
   },
-  engine: {
-    position: 'absolute',
-    right: 0,
+  header: {
+    padding: 13,
+    backgroundColor: '#1155BB'
+  },
+  centre: {
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   body: {
-    backgroundColor: Colors.white,
+    padding: 30,
+    backgroundColor: "#f2f2f2",
+    justifyContent: 'center',
+    flex: 1
   },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  innerBody: {
+    padding: 10,
+    borderWidth: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
+  setSize: {
+    minWidth: 20,
+    maxWidth: 20
+  }
 });
 
 export default App;
