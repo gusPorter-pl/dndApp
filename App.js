@@ -9,54 +9,101 @@ import {
   Button,
 } from 'react-native';
 
-const App = () => {
-  let players = [
-    {name: 'Bizzie', initiative: 20, colour: '#cf0000'},
-    {name: 'Xaylor', initiative: 14, colour: '#00cf00'},
-    {name: 'Salrakir', initiative: 22, colour: '#00cf00'},
-    {name: 'Mrtlvnjr', initiative: 8, colour: '#00cf00'},
-    {name: 'Pop Princess', initiative: 17, colour: '#00cf00'},
-  ];
-  players.sort((p, q) => q.initiative - p.initiative);
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      colours: ['#00cf00', '#cf0000'],
+      players: [
+        {key: 0, name: 'Bizzie', initiative: 20, colour: null},
+        {key: 1, name: 'Xaylor', initiative: 14, colour: null},
+        {key: 2, name: 'Salrakir', initiative: 2, colour: null},
+        {key: 3, name: 'Mrtlvnjr', initiative: 8, colour: null},
+        {key: 4, name: 'Pop Princess', initiative: 17, colour: null},
+      ],
+    };
+    this.changeColour = this.changeColour.bind(this);
+  }
 
-  return (
-    <View style={{height: '100%'}}>
-      <View style={[styles.centre, styles.header]}>
-        <Text style={[styles.headerText]}>Initiative Tracker</Text>
+  onUpdateItem = i => {
+    this.setState(state => {
+      const list = state.list.map((item, j) => {
+        if (j === i) {
+          return item + 1;
+        } else {
+          return item;
+        }
+      });
+      return list;
+    });
+  };
+
+  changeColour = player => {
+    this.setState(state => {
+      const updatedPlayers = state.players.map(otherPlayer => {
+        if (player === otherPlayer) {
+          if (player.colour === '#00cf00') {
+            player.colour = '#cf0000';
+          } else if (player.colour === '#cf0000') {
+            player.colour = '#00cf00';
+          }
+          return player;
+        } else {
+          return player;
+        }
+      });
+      return updatedPlayers;
+    });
+  };
+
+  render() {
+    this.state.players.sort((p, q) => q.initiative - p.initiative);
+    return (
+      <View style={{height: '100%'}}>
+        <View style={[styles.centre, styles.header]}>
+          <Text style={[styles.headerText]}>Initiative Tracker</Text>
+        </View>
+        <View style={[styles.body]}>
+          {this.state.players.map(player => {
+            if (player.colour === null) {
+              player.colour = this.state.colours[0];
+            }
+            return (
+              <View style={[styles.innerBody]}>
+                <View
+                  style={{flex: 3, paddingRight: 5, justifyContent: 'center'}}>
+                  <Text
+                    adjustsFontSizeToFit
+                    numberOfLines={1}
+                    style={[styles.centre, {fontSize: 18}]}>
+                    {player.name}
+                  </Text>
+                </View>
+                <View style={{flex: 2}}>
+                  <Button
+                    title="REACTION"
+                    color={player.colour}
+                    onPress={() => this.changeColour(player)}
+                  />
+                </View>
+                <View style={{justifyContent: 'center', paddingLeft: 5}}>
+                  <Text
+                    style={[
+                      styles.setSize,
+                      {fontSize: 18, textAlign: 'center', alignItems: 'center'},
+                    ]}>
+                    {player.initiative}
+                  </Text>
+                </View>
+              </View>
+            );
+          })}
+        </View>
       </View>
-      <View style={[styles.body]}>
-        {players.map(player => {
-          return (
-            <View style={[styles.innerBody]}>
-              <View
-                style={{flex: 3, paddingRight: 5, justifyContent: 'center'}}>
-                <Text
-                  adjustsFontSizeToFit
-                  numberOfLines={1}
-                  style={[styles.centre, {fontSize: 18}]}>
-                  {player.name}
-                </Text>
-              </View>
-              <View style={{flex: 2}}>
-                <Button title="REACTION" color={player.colour} />
-              </View>
-              <View style={{justifyContent: 'center', paddingLeft: 5}}>
-                <Text
-                  style={[
-                    styles.setSize,
-                    {fontSize: 18, textAlign: 'right', alignItems: 'center'},
-                  ]}>
-                  {player.initiative}
-                </Text>
-              </View>
-            </View>
-          );
-        })}
-      </View>
-    </View>
-    // FLEYDIRE WATERS FREEZING OVER???
-  );
-};
+      // FLEYDIRE WATERS FREEZING OVER???
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   headerText: {
