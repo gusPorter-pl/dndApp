@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, {PureComponent} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -9,19 +9,22 @@ import {
   Button,
 } from 'react-native';
 
-import { Player } from './services/types';
+import {Player} from './services/types';
 
-export default class App extends PureComponent<{}, {players: Player[], colours: string[]}> {
-  constructor(props) {
+export default class App extends PureComponent<
+  {},
+  {players: Player[]; colours: string[]}
+> {
+  public constructor(props) {
     super(props);
     this.state = {
       colours: ['#00cf00', '#cf0000'],
       players: [
-        {key: 0, name: 'Bizzie', initiative: 20, colour: 0},
-        {key: 1, name: 'Xaylor', initiative: 14, colour: 0},
-        {key: 2, name: 'Salrakir', initiative: 2, colour: 0},
-        {key: 3, name: 'Mrtlvnjr', initiative: 8, colour: 0},
-        {key: 4, name: 'Pop Princess', initiative: 17, colour: 0},
+        {name: 'Bizzie', initiative: 20, colour: 0},
+        {name: 'Xaylor', initiative: 14, colour: 0},
+        {name: 'Salrakir', initiative: 2, colour: 0},
+        {name: 'Mrtlvnjr', initiative: 8, colour: 0},
+        {name: 'Pop Princess', initiative: 17, colour: 0},
       ],
     };
     this.changeColour = this.changeColour.bind(this);
@@ -52,7 +55,7 @@ export default class App extends PureComponent<{}, {players: Player[], colours: 
         <View style={[styles.body]}>
           {this.state.players.map((player: Player) => {
             return (
-              <View style={[styles.innerBody]}>
+              <View style={[styles.innerBody]} key={player.name}>
                 <View
                   style={{flex: 3, paddingRight: 5, justifyContent: 'center'}}>
                   <Text
