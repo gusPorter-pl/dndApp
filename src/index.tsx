@@ -17,11 +17,11 @@ export default class App extends PureComponent<{}, {players: Player[], colours: 
     this.state = {
       colours: ['#00cf00', '#cf0000'],
       players: [
-        {key: 0, name: 'Bizzie', initiative: 20, colour: null},
-        {key: 1, name: 'Xaylor', initiative: 14, colour: null},
-        {key: 2, name: 'Salrakir', initiative: 2, colour: null},
-        {key: 3, name: 'Mrtlvnjr', initiative: 8, colour: null},
-        {key: 4, name: 'Pop Princess', initiative: 17, colour: null},
+        {key: 0, name: 'Bizzie', initiative: 20, colour: 0},
+        {key: 1, name: 'Xaylor', initiative: 14, colour: 0},
+        {key: 2, name: 'Salrakir', initiative: 2, colour: 0},
+        {key: 3, name: 'Mrtlvnjr', initiative: 8, colour: 0},
+        {key: 4, name: 'Pop Princess', initiative: 17, colour: 0},
       ],
     };
     this.changeColour = this.changeColour.bind(this);
@@ -31,11 +31,7 @@ export default class App extends PureComponent<{}, {players: Player[], colours: 
     const updatedPlayers = this.state.players.map(otherPlayer => {
       if (player === otherPlayer) {
         // If the player passed is this player in for loop, change the colour
-        if (player.colour === this.state.colours[0]) {
-          player.colour = this.state.colours[1];
-        } else if (player.colour === this.state.colours[1]) {
-          player.colour = this.state.colours[0];
-        }
+        player.colour = (player.colour + 1) % 2; // 0 becomes 1, and 1 becomes 0
         return player;
       } else {
         // Skip player
@@ -55,9 +51,6 @@ export default class App extends PureComponent<{}, {players: Player[], colours: 
         </View>
         <View style={[styles.body]}>
           {this.state.players.map((player: Player) => {
-            if (player.colour === null) {
-              player.colour = this.state.colours[0];
-            }
             return (
               <View style={[styles.innerBody]}>
                 <View
@@ -72,7 +65,7 @@ export default class App extends PureComponent<{}, {players: Player[], colours: 
                 <View style={{flex: 2}}>
                   <Button
                     title="REACTION"
-                    color={player.colour}
+                    color={this.state.colours[player.colour]}
                     onPress={() => this.changeColour(player)}
                   />
                 </View>
