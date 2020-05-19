@@ -35,7 +35,7 @@ export default function reducer(
         ...state,
         players: [
           ...state.players.map(player =>
-            player !== action.player ? player : action.player,
+            player.name !== action.player.name ? player : action.player,
           ),
         ],
       };
