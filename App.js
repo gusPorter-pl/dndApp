@@ -25,35 +25,20 @@ class App extends React.Component {
     this.changeColour = this.changeColour.bind(this);
   }
 
-  onUpdateItem = i => {
-    this.setState(state => {
-      const list = state.list.map((item, j) => {
-        if (j === i) {
-          return item + 1;
-        } else {
-          return item;
-        }
-      });
-      return list;
-    });
-  };
-
   changeColour = player => {
-    this.setState(state => {
-      const updatedPlayers = state.players.map(otherPlayer => {
-        if (player === otherPlayer) {
-          if (player.colour === '#00cf00') {
-            player.colour = '#cf0000';
-          } else if (player.colour === '#cf0000') {
-            player.colour = '#00cf00';
-          }
-          return player;
-        } else {
-          return player;
+    const updatedPlayers = this.state.players.map(otherPlayer => {
+      if (player === otherPlayer) {
+        if (player.colour === this.state.colours[0]) {
+          player.colour = this.state.colours[1];
+        } else if (player.colour === this.state.colours[1]) {
+          player.colour = this.state.colours[0];
         }
-      });
-      return updatedPlayers;
+        return player;
+      } else {
+        return otherPlayer;
+      }
     });
+    this.setState({players: updatedPlayers});
   };
 
   render() {
