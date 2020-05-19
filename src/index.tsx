@@ -34,7 +34,7 @@ export default class App extends PureComponent<{}, {players: Player[], colours: 
         player.colour = (player.colour + 1) % 2; // 0 becomes 1, and 1 becomes 0
         return player;
       } else {
-        // Skip player
+        // Not the passed player, so skip
         return otherPlayer;
       }
     });
