@@ -30,6 +30,7 @@ export default class App extends PureComponent<{}, {players: Player[], colours: 
   private changeColour = (player: Player) => {
     const updatedPlayers = this.state.players.map(otherPlayer => {
       if (player === otherPlayer) {
+        // If the player passed is this player in for loop, change the colour
         if (player.colour === this.state.colours[0]) {
           player.colour = this.state.colours[1];
         } else if (player.colour === this.state.colours[1]) {
@@ -37,6 +38,7 @@ export default class App extends PureComponent<{}, {players: Player[], colours: 
         }
         return player;
       } else {
+        // Skip player
         return otherPlayer;
       }
     });
@@ -45,6 +47,7 @@ export default class App extends PureComponent<{}, {players: Player[], colours: 
 
   public render() {
     this.state.players.sort((p, q) => q.initiative - p.initiative);
+    // Sort by initiative in descending order
     return (
       <View style={{height: '100%'}}>
         <View style={[styles.centre, styles.header]}>
