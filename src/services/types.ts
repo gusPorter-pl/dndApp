@@ -3,4 +3,6 @@ export interface Player {
    initiative: number; // Make this optional?
    initiativeModifier?: number; // This will not be optional, need to update
    colour: number; // This references the index in state.colours array
+   // characterType: 'PC' | 'NPC'
+   // legendaryActions?: number;
 }
