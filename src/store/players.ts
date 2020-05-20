@@ -1,6 +1,10 @@
-import {createStore} from 'redux';
+import {createStore, Dispatch} from 'redux';
 import reducer from '../reducer/players';
+import { PlayerActionTypes } from '../actions/players';
+import {initialState} from '../reducer/players'
 
-const playerStore = createStore(reducer);
+export type PlayerDispatch = Dispatch<PlayerActionTypes>
+
+const playerStore = createStore(reducer, initialState);
 
 export default playerStore;

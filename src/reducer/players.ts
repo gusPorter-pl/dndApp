@@ -1,20 +1,20 @@
 import {Player} from '../services/types';
 import {PlayerActionTypes} from '../actions/players';
 
-interface State {
+export interface PlayerState {
   players: Player[];
   colours: string[];
 }
 
-const initialState: State = {
-  players: [],
+export const initialState: PlayerState = {
+  players: [{name: 'Bizzie', initiative: 20, colour: 0}],
   colours: ['#00cf00', '#cf0000'],
 };
 
 export default function reducer(
-  state: State = initialState,
+  state: PlayerState = initialState,
   action: PlayerActionTypes,
-): State {
+): PlayerState {
   switch (action.type) {
     case 'addPlayer':
       return {
