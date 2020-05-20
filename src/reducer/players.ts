@@ -1,4 +1,5 @@
 import {Player} from '../services/types';
+import { PlayerActionTypes } from '../actions/players';
 
 interface State {
   players: Player[];
@@ -9,11 +10,6 @@ const initialState: State = {
   players: [],
   colours: ['#00cf00', '#cf0000'],
 };
-
-type PlayerActionTypes =
-  | {type: 'addPlayer'; player: Player}
-  | {type: 'removePlayer'; player: Player}
-  | {type: 'editPlayer'; player: Player};
 
 export default function reducer(
   state: State = initialState,
@@ -28,14 +24,17 @@ export default function reducer(
     case 'removePlayer':
       return {
         ...state,
-        players: [...state.players.filter(player => player.name !== action.player.name)],
+        players: [
+          ...state.players.filter(player => player.name !== action.name),
+        ],
       };
     case 'editPlayer':
       return {
         ...state,
         players: [
-          ...state.players.map(player =>
-            player.name !== action.player.name ? player : action.player,
+          ...state.players.map(
+            player =>
+              player.name !== action.player.name ? player : action.player, // Won't work if we want to change the name
           ),
         ],
       };

@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 
 import {Player} from './services/types';
+import playerStore from './store/players';
 
 export default class App extends PureComponent<
   {},
