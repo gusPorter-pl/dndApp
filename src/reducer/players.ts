@@ -1,5 +1,5 @@
 import {Player} from '../services/types';
-import { PlayerActionTypes } from '../actions/players';
+import {PlayerActionTypes} from '../actions/players';
 
 interface State {
   players: Player[];
