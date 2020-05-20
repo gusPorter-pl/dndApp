@@ -28,7 +28,7 @@ export default function reducer(
     case 'removePlayer':
       return {
         ...state,
-        players: [...state.players.filter(player => player !== action.player)],
+        players: [...state.players.filter(player => player.name !== action.player.name)],
       };
     case 'editPlayer':
       return {
