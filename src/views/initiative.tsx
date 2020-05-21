@@ -30,72 +30,58 @@ type Props = StateProps & DispatchProps;
 class Initiative extends React.PureComponent<Props> {
   public constructor(props: Props) {
     super(props);
-    this.state = {
-      colours: ['#00cf00', '#cf0000'],
-      players: [
-        {name: 'Bizzie', initiative: 20, colour: 0},
-        {name: 'Xaylor', initiative: 14, colour: 0},
-        {name: 'Salrakir', initiative: 2, colour: 0},
-        {name: 'Mrtlvnjr', initiative: 8, colour: 0},
-        {name: 'Pop Princess', initiative: 17, colour: 0},
-      ],
-    };
-    // this.changeColour = this.changeColour.bind(this);
   }
 
   public render() {
     this.props.players.sort((p, q) => q.initiative - p.initiative);
-    console.log('rendered');
     // Sort by initiative in descending order
     return (
-      <Provider store={playerStore}>
-        <View style={{height: '100%'}}>
-          <View style={[styles.centre, styles.header]}>
-            <Text style={[styles.headerText]}>Initiative Tracker</Text>
-          </View>
-          <View style={[styles.body]}>
-            {this.props.players.map((player: Player) => {
-              return (
-                <View style={[styles.innerBody]} key={player.name}>
-                  <View
-                    style={{
-                      flex: 3,
-                      paddingRight: 5,
-                      justifyContent: 'center',
-                    }}>
-                    <Text
-                      adjustsFontSizeToFit
-                      numberOfLines={1}
-                      style={[styles.centre, {fontSize: 18}]}>
-                      {player.name}
-                    </Text>
-                  </View>
-                  <View style={{flex: 2}}>
-                    <Button
-                      title="REACTION"
-                      color={this.props.colours[player.colour]}
-                      onPress={() => this.props.changeColour(player)}
-                    />
-                  </View>
-                  <View style={{justifyContent: 'center', paddingLeft: 5}}>
-                    <Text
-                      style={[
-                        styles.setSize,
-                        {
-                          fontSize: 18,
-                          textAlign: 'center',
-                          alignItems: 'center',
-                        },
-                      ]}>
-                      {player.initiative}
-                    </Text>
-                  </View>
-                </View>
-              );
-            })}
-          </View>
+      <View style={{height: '100%'}}>
+        <View style={[styles.centre, styles.header]}>
+          <Text style={[styles.headerText]}>Initiative Tracker</Text>
         </View>
-      </Provider>
+        <View style={[styles.body]}>
+          {this.props.players.map((player: Player) => {
+            return (
+              <View style={[styles.innerBody]} key={player.name}>
+                <View
+                  style={{
+                    flex: 3,
+                    paddingRight: 5,
+                    justifyContent: 'center',
+                  }}>
+                  <Text
+                    adjustsFontSizeToFit
+                    numberOfLines={1}
+                    style={[styles.centre, {fontSize: 18}]}>
+                    {player.name}
+                  </Text>
+                </View>
+                <View style={{flex: 2}}>
+                  <Button
+                    title="REACTION"
+                    color={this.props.colours[player.colour]}
+                    onPress={() => this.props.changeColour(player)}
+                  />
+                </View>
+                <View style={{justifyContent: 'center', paddingLeft: 5}}>
+                  <Text
+                    style={[
+                      styles.setSize,
+                      {
+                        fontSize: 18,
+                        textAlign: 'center',
+                        alignItems: 'center',
+                      },
+                    ]}>
+                    {player.initiative}
+                  </Text>
+                </View>
+              </View>
+            );
+          })}
+        </View>
+      </View>
       // FLEYDIRE WATERS FREEZING OVER???
     );
   }
