@@ -5,10 +5,10 @@ import {
   ScrollView,
   View,
   Text,
-  StatusBar,
   Button,
 } from 'react-native';
-import {Provider, connect} from 'react-redux';
+import {connect} from 'react-redux';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import {Player} from '../services/types';
 import playerStore, {PlayerDispatch} from '../store/players';
@@ -23,6 +23,7 @@ interface StateProps {
 
 interface DispatchProps {
   changeColour: (player: Player) => void;
+  addPlayer: (player: Player) => void;
 }
 
 type Props = StateProps & DispatchProps;
@@ -30,11 +31,18 @@ type Props = StateProps & DispatchProps;
 class Initiative extends React.PureComponent<Props> {
   public constructor(props: Props) {
     super(props);
+    playerStore.subscribe(() => {
+      this.props.players.sort((p, q) => q.initiative - p.initiative);
+      // Sort by initiative in descending order
+    });
+    // this.props.addPlayer({name: 'Bizzie', initiative: 20, colour: 0});
+    // this.props.addPlayer({name: 'Xaylor', initiative: 14, colour: 0});
+    // this.props.addPlayer({name: 'Salrakir', initiative: 2, colour: 0});
+    // this.props.addPlayer({name: 'Mrtlvnjr', initiative: 8, colour: 0});
+    // this.props.addPlayer({name: 'Pop Princess', initiative: 17, colour: 0});
   }
 
   public render() {
-    this.props.players.sort((p, q) => q.initiative - p.initiative);
-    // Sort by initiative in descending order
     return (
       <View style={{height: '100%'}}>
         <View style={[styles.centre, styles.header]}>
@@ -127,6 +135,9 @@ const mapDispatchToProps = (dispatch: PlayerDispatch): DispatchProps => ({
     const updatedPlayer = changeButtonColour(player);
     dispatch(actions.editPlayer(updatedPlayer));
   },
+  addPlayer: (player: Player) => {
+    dispatch(actions.addPlayer(player));
+  }
 });
 
 export default connect(

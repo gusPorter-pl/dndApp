@@ -7,7 +7,7 @@ export interface PlayerState {
 }
 
 export const initialState: PlayerState = {
-  players: [{name: 'Bizzie', initiative: 20, colour: 0}],
+  players: [], // THis could be a retreiveData()?
   colours: ['#00cf00', '#cf0000'],
 };
 

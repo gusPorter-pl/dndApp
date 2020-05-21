@@ -5,13 +5,7 @@ export type PlayerActionTypes =
   | {type: 'removePlayer'; name: string}
   | {type: 'editPlayer'; player: Player};
 
-export function addPlayer(name: string, initiative: number, initiativeModifier: number) {
-  const player: Player = {
-    name,
-    initiative,
-    initiativeModifier,
-    colour: 0,
-  };
+export function addPlayer(player: Player) {
   const action: PlayerActionTypes = {
     type: 'addPlayer',
     player,
