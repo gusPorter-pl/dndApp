@@ -38,6 +38,13 @@ export default function reducer(
           ),
         ],
       };
+    case 'retrieveFromStore':
+      return {
+        ...state,
+        players: [
+          // Get players from async storage
+        ]
+      }
     default:
       return state;
   }

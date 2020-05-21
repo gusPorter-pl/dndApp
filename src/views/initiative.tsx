@@ -24,6 +24,7 @@ interface StateProps {
 interface DispatchProps {
   changeColour: (player: Player) => void;
   addPlayer: (player: Player) => void;
+  retrieveFromStore: () => void;
 }
 
 type Props = StateProps & DispatchProps;
@@ -137,6 +138,9 @@ const mapDispatchToProps = (dispatch: PlayerDispatch): DispatchProps => ({
   },
   addPlayer: (player: Player) => {
     dispatch(actions.addPlayer(player));
+  },
+  retrieveFromStore: () => {
+    dispatch(actions.retrieveFromStore());
   }
 });
 

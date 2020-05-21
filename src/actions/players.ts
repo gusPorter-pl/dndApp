@@ -3,7 +3,8 @@ import {Player} from '../services/types';
 export type PlayerActionTypes =
   | {type: 'addPlayer'; player: Player}
   | {type: 'removePlayer'; name: string}
-  | {type: 'editPlayer'; player: Player};
+  | {type: 'editPlayer'; player: Player}
+  | {type: 'retrieveFromStore'};
 
 export function addPlayer(player: Player) {
   const action: PlayerActionTypes = {
@@ -25,6 +26,13 @@ export function editPlayer(player: Player) {
   const action: PlayerActionTypes = {
     type: 'editPlayer',
     player,
+  };
+  return (action);
+}
+
+export function retrieveFromStore() {
+  const action: PlayerActionTypes = {
+    type: 'retrieveFromStore'
   };
   return (action);
 }
