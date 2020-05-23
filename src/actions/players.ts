@@ -1,4 +1,4 @@
-import {Player} from '../services/types';
+import {Player} from '../common/types';
 
 export type PlayerActionTypes =
   | {type: 'addPlayer'; player: Player}

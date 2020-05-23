@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import {connect} from 'react-redux';
 
-import {Player} from '../services/types';
+import {Player} from '../common/types';
 import {PlayerDispatch} from '../store/players';
 import * as actions from '../actions/players';
 import * as storage from '../services/storage';

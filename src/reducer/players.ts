@@ -1,4 +1,4 @@
-import {Player} from '../services/types';
+import {Player} from '../common/types';
 import {PlayerActionTypes} from '../actions/players';
 
 export interface PlayerState {

@@ -1,4 +1,4 @@
-import { Player } from './types';
+import { Player } from '../common/types';
 import AsyncStorage from '@react-native-community/async-storage';
 
 export const getPlayers = async () => {
