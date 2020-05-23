@@ -7,7 +7,7 @@ export interface PlayerState {
 }
 
 export const initialState: PlayerState = {
-  players: [], // THis could be a retreiveData()?
+  players: [],
   colours: ['#00cf00', '#cf0000'],
 };
 
@@ -38,11 +38,20 @@ export default function reducer(
           ),
         ],
       };
-    case 'retrieveFromStore':
+    case 'loadPlayers':
+      return {
+        ...state,
+        players: action.players
+      }
+    case 'getMock':
       return {
         ...state,
         players: [
-          // Get players from async storage
+          {name: 'Bizzie', initiative: 20, colour: 0},
+          {name: 'Xaylor', initiative: 14, colour: 0},
+          {name: 'Salrakir', initiative: 2, colour: 0},
+          {name: 'Mrtlvnjr', initiative: 8, colour: 0},
+          {name: 'Pop Princess', initiative: 17, colour: 0}
         ]
       }
     default:

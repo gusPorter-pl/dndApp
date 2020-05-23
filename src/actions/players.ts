@@ -4,7 +4,8 @@ export type PlayerActionTypes =
   | {type: 'addPlayer'; player: Player}
   | {type: 'removePlayer'; name: string}
   | {type: 'editPlayer'; player: Player}
-  | {type: 'retrieveFromStore'};
+  | {type: 'loadPlayers', players: Player[]}
+  | {type: 'getMock'};
 
 export function addPlayer(player: Player) {
   const action: PlayerActionTypes = {
@@ -30,9 +31,17 @@ export function editPlayer(player: Player) {
   return (action);
 }
 
-export function retrieveFromStore() {
+export function loadPlayers(players: Player[]) {
   const action: PlayerActionTypes = {
-    type: 'retrieveFromStore'
+    type: 'loadPlayers',
+    players
+  };
+  return (action);
+}
+
+export function getMock() {
+  const action: PlayerActionTypes = {
+    type: 'getMock'
   };
   return (action);
 }
