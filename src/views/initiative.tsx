@@ -23,9 +23,9 @@ interface StateProps {
 
 interface DispatchProps {
   addPlayer: (player: Player) => void;
-  removePlayer: (name: string) => void;
+  removePlayer: (name: string) => void; // Change this from string -> Player
+  changeInitiative: (player: Player, initiative: number) => void; // Make this edit player
   changeColour: (player: Player) => void;
-  changeInitiative: (player: Player, initiative: number) => void;
   savePlayers: (players: Player[]) => void;
   getPlayers: () => void;
 
