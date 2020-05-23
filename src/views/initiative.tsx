@@ -183,6 +183,7 @@ const mapStateToProps = (state: PlayerState): StateProps => ({
   players: state.players,
   colours: state.colours,
 });
+
 const mapDispatchToProps = (dispatch: PlayerDispatch): DispatchProps => ({
   addPlayer: (player: Player) => {
     dispatch(actions.addPlayer(player));
