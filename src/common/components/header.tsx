@@ -1,5 +1,6 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, ViewStyle} from 'react-native';
+import Centre from './centre';
 
 import colours from '../../resources/colours';
 
@@ -8,13 +9,13 @@ interface Props {
   colour?: string; // include this somehow  {props.colour && smth}
 }
 
-export default function Header(props: Props) {
+export default (props: Props) => {
   return (
-    <View style={[styles.centre, styles.header]}>
+    <Centre style={styles.header}>
       <Text style={[styles.headerText]}>{props.text}</Text>
-    </View>
+    </Centre>
   );
-}
+};
 
 const styles = StyleSheet.create({
   headerText: {
@@ -31,9 +32,5 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.5,
     shadowRadius: 0,
     elevation: 15
-  },
-  centre: {
-    justifyContent: 'center',
-    alignItems: 'center'
   }
 });
