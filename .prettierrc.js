@@ -9,4 +9,4 @@ module.exports = {
 	trailingComma: 'none'
 };
 
-// npx prettier --config .prettierrc.js --write "src/**/*.ts"
+// npx prettier --config .prettierrc.js --write "src/**"
