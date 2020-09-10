@@ -15,6 +15,7 @@ import * as actions from '../actions/players';
 import * as storage from '../services/storage';
 import {PlayerState} from '../reducer/players';
 import {changeColour} from '../common/players';
+import Header from '../common/components/header';
 
 interface StateProps {
   players: Player[];
@@ -47,9 +48,7 @@ class Initiative extends React.PureComponent<Props> {
     }
     return (
       <View style={{height: '100%'}}>
-        <View style={[styles.centre, styles.header]}>
-          <Text style={[styles.headerText]}>Initiative Tracker</Text>
-        </View>
+        <Header text="Initiative" />
         <View style={[styles.body]}>
           {this.props.players.map((player: Player) => {
             return (
@@ -151,14 +150,6 @@ class Initiative extends React.PureComponent<Props> {
 }
 
 const styles = StyleSheet.create({
-  headerText: {
-    fontSize: 25,
-    color: '#ffffff'
-  },
-  header: {
-    padding: 13,
-    backgroundColor: '#1155BB'
-  },
   centre: {
     justifyContent: 'center',
     alignItems: 'center'
