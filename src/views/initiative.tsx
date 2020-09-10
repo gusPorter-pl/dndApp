@@ -15,7 +15,6 @@ import * as actions from '../actions/players';
 import * as storage from '../services/storage';
 import {PlayerState} from '../reducer/players';
 import {changeColour} from '../common/players';
-import Header from '../common/components/header';
 
 interface StateProps {
   players: Player[];
@@ -53,10 +52,10 @@ class Initiative extends React.PureComponent<Props> {
         <View style={[styles.body]}>
           {this.props.players.map((player: Player) => {
             return (
-              <View>
+              <View key={player.name}>
                 {line && <View style={{borderTopWidth: 1, flex: 1}} />}
                 {(line = false)}
-                <View style={[styles.innerBody]} key={player.name}>
+                <View style={[styles.innerBody]}>
                   <View
                     style={{
                       flex: 3,
@@ -103,18 +102,6 @@ class Initiative extends React.PureComponent<Props> {
               title={'Add player!'}
               onPress={() => {
                 this.props.getMock();
-              }}
-            />
-          </View>
-          <View style={{padding: 3, paddingTop: 7}}>
-            <Button
-              // This will become a remove option
-              // Change to different screen?
-              // Switch out buttons for remove?
-              // Add a "Are you sure" button
-              title={'Remove Bizzie'}
-              onPress={() => {
-                this.props.removePlayer('Bizzie');
               }}
             />
           </View>
