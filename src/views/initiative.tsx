@@ -46,48 +46,53 @@ class Initiative extends React.PureComponent<Props> {
       this.props.players.sort((p, q) => q.initiative - p.initiative);
       // Sort by initiative in descending order
     }
+    let line = true;
     return (
       <View style={{height: '100%'}}>
-        <Header text="Initiative" />
+        {/* <Header text="Initiative" /> */}
         <View style={[styles.body]}>
           {this.props.players.map((player: Player) => {
             return (
-              <View style={[styles.innerBody]} key={player.name}>
-                <View
-                  style={{
-                    flex: 3,
-                    paddingRight: 5,
-                    justifyContent: 'center'
-                  }}
-                >
-                  <Text
-                    adjustsFontSizeToFit
-                    numberOfLines={1}
-                    style={[styles.centre, {fontSize: 18}]}
+              <View>
+                {line && <View style={{borderTopWidth: 1, flex: 1}} />}
+                {(line = false)}
+                <View style={[styles.innerBody]} key={player.name}>
+                  <View
+                    style={{
+                      flex: 3,
+                      paddingRight: 5,
+                      justifyContent: 'center'
+                    }}
                   >
-                    {player.name}
-                  </Text>
-                </View>
-                <View style={{flex: 2}}>
-                  <Button
-                    title="REACTION"
-                    color={this.props.colours[player.colour]}
-                    onPress={() => this.props.changeColour(player)}
-                  />
-                </View>
-                <View style={{justifyContent: 'center', paddingLeft: 5}}>
-                  <Text
-                    style={[
-                      styles.setSize,
-                      {
-                        fontSize: 18,
-                        textAlign: 'center',
-                        alignItems: 'center'
-                      }
-                    ]}
-                  >
-                    {player.initiative}
-                  </Text>
+                    <Text
+                      adjustsFontSizeToFit
+                      numberOfLines={1}
+                      style={[styles.centre, {fontSize: 18}]}
+                    >
+                      {player.name}
+                    </Text>
+                  </View>
+                  <View style={{flex: 2}}>
+                    <Button
+                      title="REACTION"
+                      color={this.props.colours[player.colour]}
+                      onPress={() => this.props.changeColour(player)}
+                    />
+                  </View>
+                  <View style={{justifyContent: 'center', paddingLeft: 5}}>
+                    <Text
+                      style={[
+                        styles.setSize,
+                        {
+                          fontSize: 18,
+                          textAlign: 'center',
+                          alignItems: 'center'
+                        }
+                      ]}
+                    >
+                      {player.initiative}
+                    </Text>
+                  </View>
                 </View>
               </View>
             );
@@ -162,13 +167,14 @@ const styles = StyleSheet.create({
   },
   innerBody: {
     padding: 10,
-    borderWidth: 1,
+    borderBottomWidth: 1,
+    borderLeftWidth: 1,
+    borderRightWidth: 1,
     flexDirection: 'row',
     justifyContent: 'space-between'
   },
   setSize: {
-    minWidth: 20,
-    maxWidth: 20
+    width: 30
   }
 });
 
