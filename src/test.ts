@@ -13,8 +13,8 @@ playerStore.dispatch(
     name: 'Lizzie',
     initiative: 5,
     initiativeModifier: 3,
-    colour: 0,
-  }),
+    colour: 0
+  })
 );
 playerStore.dispatch(actions.removePlayer('Lizzie'));
 playerStore.dispatch(
@@ -22,6 +22,6 @@ playerStore.dispatch(
     name: 'Bizzie',
     initiative: 18,
     initiativeModifier: 5,
-    colour: 0,
-  }),
+    colour: 0
+  })
 );

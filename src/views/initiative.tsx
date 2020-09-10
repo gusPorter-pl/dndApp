@@ -5,7 +5,7 @@ import {
   ScrollView,
   View,
   Text,
-  Button,
+  Button
 } from 'react-native';
 import {connect} from 'react-redux';
 
@@ -58,12 +58,14 @@ class Initiative extends React.PureComponent<Props> {
                   style={{
                     flex: 3,
                     paddingRight: 5,
-                    justifyContent: 'center',
-                  }}>
+                    justifyContent: 'center'
+                  }}
+                >
                   <Text
                     adjustsFontSizeToFit
                     numberOfLines={1}
-                    style={[styles.centre, {fontSize: 18}]}>
+                    style={[styles.centre, {fontSize: 18}]}
+                  >
                     {player.name}
                   </Text>
                 </View>
@@ -81,9 +83,10 @@ class Initiative extends React.PureComponent<Props> {
                       {
                         fontSize: 18,
                         textAlign: 'center',
-                        alignItems: 'center',
-                      },
-                    ]}>
+                        alignItems: 'center'
+                      }
+                    ]}
+                  >
                     {player.initiative}
                   </Text>
                 </View>
@@ -118,7 +121,7 @@ class Initiative extends React.PureComponent<Props> {
               onPress={() => {
                 this.props.changeInitiative(
                   {name: 'Bizzie', initiative: 20, colour: 0},
-                  15,
+                  15
                 );
               }}
             />
@@ -151,37 +154,37 @@ class Initiative extends React.PureComponent<Props> {
 const styles = StyleSheet.create({
   headerText: {
     fontSize: 25,
-    color: '#ffffff',
+    color: '#ffffff'
   },
   header: {
     padding: 13,
-    backgroundColor: '#1155BB',
+    backgroundColor: '#1155BB'
   },
   centre: {
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   body: {
     padding: 30,
     backgroundColor: '#f2f2f2',
     justifyContent: 'center',
-    flex: 1,
+    flex: 1
   },
   innerBody: {
     padding: 10,
     borderWidth: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-between'
   },
   setSize: {
     minWidth: 20,
-    maxWidth: 20,
-  },
+    maxWidth: 20
+  }
 });
 
 const mapStateToProps = (state: PlayerState): StateProps => ({
   players: state.players,
-  colours: state.colours,
+  colours: state.colours
 });
 
 const mapDispatchToProps = (dispatch: PlayerDispatch): DispatchProps => ({
@@ -202,7 +205,7 @@ const mapDispatchToProps = (dispatch: PlayerDispatch): DispatchProps => ({
   },
   getPlayers: async () => {
     const promise = storage.getPlayers();
-    promise.then(players => {
+    promise.then((players) => {
       dispatch(actions.loadPlayers(players));
     });
   },
@@ -211,10 +214,7 @@ const mapDispatchToProps = (dispatch: PlayerDispatch): DispatchProps => ({
   },
   getMock: () => {
     dispatch(actions.getMock());
-  },
+  }
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Initiative);
+export default connect(mapStateToProps, mapDispatchToProps)(Initiative);
