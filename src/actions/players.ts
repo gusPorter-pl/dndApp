@@ -7,7 +7,7 @@ export type PlayerActionTypes =
   | {type: 'loadPlayers'; players: Player[]}
   | {type: 'getMock'};
 
-export function addPlayer(player: Player) {
+export const addPlayer = (player: Player) => {
   const action: PlayerActionTypes = {
     type: 'addPlayer',
     player
@@ -15,7 +15,7 @@ export function addPlayer(player: Player) {
   return action;
 }
 
-export function removePlayer(name: string) {
+export const removePlayer = (name: string) => {
   const action: PlayerActionTypes = {
     type: 'removePlayer',
     name
@@ -23,7 +23,7 @@ export function removePlayer(name: string) {
   return action;
 }
 
-export function editPlayer(player: Player) {
+export const editPlayer = (player: Player) => {
   const action: PlayerActionTypes = {
     type: 'editPlayer',
     player
@@ -31,7 +31,7 @@ export function editPlayer(player: Player) {
   return action;
 }
 
-export function loadPlayers(players: Player[]) {
+export const loadPlayers = (players: Player[]) => {
   const action: PlayerActionTypes = {
     type: 'loadPlayers',
     players
@@ -39,7 +39,7 @@ export function loadPlayers(players: Player[]) {
   return action;
 }
 
-export function getMock() {
+export const getMock = () => {
   const action: PlayerActionTypes = {
     type: 'getMock'
   };
