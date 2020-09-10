@@ -146,7 +146,6 @@ class Initiative extends React.PureComponent<Props> {
           </View>
         </View>
       </View>
-      // FLEYDIRE WATERS FREEZING OVER???
     );
   }
 }

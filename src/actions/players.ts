@@ -13,7 +13,7 @@ export const addPlayer = (player: Player) => {
     player
   };
   return action;
-}
+};
 
 export const removePlayer = (name: string) => {
   const action: PlayerActionTypes = {
@@ -21,7 +21,7 @@ export const removePlayer = (name: string) => {
     name
   };
   return action;
-}
+};
 
 export const editPlayer = (player: Player) => {
   const action: PlayerActionTypes = {
@@ -29,7 +29,7 @@ export const editPlayer = (player: Player) => {
     player
   };
   return action;
-}
+};
 
 export const loadPlayers = (players: Player[]) => {
   const action: PlayerActionTypes = {
@@ -37,11 +37,11 @@ export const loadPlayers = (players: Player[]) => {
     players
   };
   return action;
-}
+};
 
 export const getMock = () => {
   const action: PlayerActionTypes = {
     type: 'getMock'
   };
   return action;
-}
+};
