@@ -1,18 +1,13 @@
 import React, {PureComponent} from 'react';
-import {
-  StatusBar,
-  View,
-  TouchableOpacity,
-  Image,
-  Text,
-  StyleSheet
-} from 'react-native';
+import {StatusBar, View, TouchableOpacity, Image, Text} from 'react-native';
 import {Provider} from 'react-redux';
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer, useNavigation} from '@react-navigation/native';
 
 import playerStore from './store/players';
+import Players from './views/players';
 import Initiative from './views/initiative';
+import styles from './common/styles';
 import colours from './resources/colours';
 
 const emptyBox = require('./resources/assets/empty.jpg');
@@ -23,8 +18,8 @@ const HomeScreen = () => {
   const navigation = useNavigation();
   const pages = ['Players', 'Initiative'];
   return (
-    <View style={{backgroundColor: '#dcdddf', flex: 1}}>
-      <View style={{marginTop: 20, alignItems: 'center'}}>
+    <View style={styles.background}>
+      <View style={{marginTop: 10, alignItems: 'center'}}>
         {pages.map((page) => {
           return (
             <View style={{marginTop: 5}} key={page}>
@@ -51,23 +46,6 @@ const HomeScreen = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    // flex: 1
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  overlapView: {
-    position: 'absolute',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  overlapText: {
-    color: 'black',
-    fontSize: 22
-  }
-});
 
 export default class App extends PureComponent {
   public constructor(props: {}) {
@@ -97,6 +75,11 @@ export default class App extends PureComponent {
             <Stack.Screen
               name="Initiative"
               component={Initiative}
+              options={options}
+            />
+            <Stack.Screen
+              name="Players"
+              component={Players}
               options={options}
             />
           </Stack.Navigator>
