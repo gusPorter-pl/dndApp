@@ -43,15 +43,22 @@ export default function reducer(
         ...state,
         players: action.players
       };
+    case 'setAllEditFalse':
+      return {
+        ...state,
+        players: state.players.map((player: Player) => {
+          return player.edit === true ? {...player, edit: false} : player;
+        })
+      };
     case 'getMock':
       return {
         ...state,
         players: [
-          {name: 'Bizzie', initiative: 20, colour: 0},
-          {name: 'Xaylor', initiative: 14, colour: 0},
-          {name: 'Salrakir', initiative: 2, colour: 0},
-          {name: 'Mrtlvnjr', initiative: 8, colour: 0},
-          {name: 'Pop Princess', initiative: 17, colour: 0}
+          {name: 'Bizzie', initiative: 20, colour: 0, edit: true},
+          {name: 'Xaylor', initiative: 14, colour: 0, edit: false},
+          {name: 'Salrakir', initiative: 2, colour: 0, edit: false},
+          {name: 'Mrtlvnjr', initiative: 8, colour: 0, edit: false},
+          {name: 'Pop Princess', initiative: 17, colour: 0, edit: false}
         ]
       };
     default:

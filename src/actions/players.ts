@@ -5,6 +5,7 @@ export type PlayerActionTypes =
   | {type: 'removePlayer'; name: string}
   | {type: 'editPlayer'; player: Player}
   | {type: 'loadPlayers'; players: Player[]}
+  | {type: 'setAllEditFalse'; players: Player[]}
   | {type: 'getMock'};
 
 export const addPlayer = (player: Player) => {
@@ -34,6 +35,14 @@ export const editPlayer = (player: Player) => {
 export const loadPlayers = (players: Player[]) => {
   const action: PlayerActionTypes = {
     type: 'loadPlayers',
+    players
+  };
+  return action;
+};
+
+export const setAllEditFalse = (players: Player[]) => {
+  const action: PlayerActionTypes = {
+    type: 'setAllEditFalse',
     players
   };
   return action;
