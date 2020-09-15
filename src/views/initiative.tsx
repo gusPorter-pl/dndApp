@@ -1,12 +1,5 @@
-import React, {PureComponent} from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  Button
-} from 'react-native';
+import React from 'react';
+import {View, Text, Button, ScrollView} from 'react-native';
 import {connect} from 'react-redux';
 
 import {Player} from '../common/types';
@@ -15,11 +8,10 @@ import * as actions from '../actions/players';
 import * as storage from '../services/storage';
 import {PlayerState} from '../reducer/players';
 import styles from '../common/styles';
-import {changeColour} from '../common/players';
+import colours from '../resources/colours';
 
 interface StateProps {
   players: Player[];
-  colours: string[];
 }
 
 interface DispatchProps {
@@ -74,7 +66,7 @@ class Initiative extends React.PureComponent<Props> {
                   <View style={{flex: 2}}>
                     <Button
                       title="Reaction"
-                      color={this.props.colours[player.colour]}
+                      color={player.reaction ? colours.green : colours.red}
                       onPress={async () => {
                         await this.props.changeColour(player);
                         this.props.savePlayers(this.props.players);
@@ -114,7 +106,7 @@ class Initiative extends React.PureComponent<Props> {
               title={"Edit Bizzie's Initiative"}
               onPress={() => {
                 this.props.changeInitiative(
-                  {name: 'Bizzie', initiative: 20, colour: 0, edit: true},
+                  {name: 'Bizzie', initiative: 20, reaction: true, edit: true},
                   15
                 );
               }}
@@ -145,8 +137,7 @@ class Initiative extends React.PureComponent<Props> {
 }
 
 const mapStateToProps = (state: PlayerState): StateProps => ({
-  players: state.players,
-  colours: state.colours
+  players: state.players
 });
 
 const mapDispatchToProps = (dispatch: PlayerDispatch): DispatchProps => ({
@@ -157,8 +148,7 @@ const mapDispatchToProps = (dispatch: PlayerDispatch): DispatchProps => ({
     dispatch(actions.removePlayer(name));
   },
   changeColour: (player: Player) => {
-    const colour = changeColour(player.colour);
-    const updatedPlayer = {...player, colour};
+    const updatedPlayer = {...player, reaction: !player.reaction};
     dispatch(actions.editPlayer(updatedPlayer));
   },
   changeInitiative: (player: Player, initiative: number) => {

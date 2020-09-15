@@ -16,10 +16,10 @@ import * as actions from '../actions/players';
 import * as storage from '../services/storage';
 import {PlayerState} from '../reducer/players';
 import styles from '../common/styles';
-import {changeColour} from '../common/players';
 import {TextInput} from 'react-native-gesture-handler';
 
 const emptyBox = require('../resources/assets/other-empty.jpg');
+const dog = require('../resources/assets/dance.gif');
 
 interface StateProps {
   players: Player[];
@@ -44,6 +44,10 @@ class Players extends React.PureComponent<Props> {
   removeEdits: () => void;
   public constructor(props: Props) {
     super(props);
+    console.info(this.props.players);
+    if (this.props.players.length == 0) {
+      this.props.getPlayers();
+    }
     this.removeEdits = () => {
       this.props.setAllEditFalse(this.props.players);
     };
@@ -135,6 +139,9 @@ class Players extends React.PureComponent<Props> {
             </View>
           );
         })}
+        <View>
+          <Image source={dog} style={{height: '100%', width: '100%'}} />
+        </View>
         {/* <View style={{padding: 3, paddingTop: 7}}>
           <Button
             // Saves data to store
@@ -174,8 +181,7 @@ const mapDispatchToProps = (dispatch: PlayerDispatch): DispatchProps => ({
     dispatch(actions.removePlayer(name));
   },
   changeColour: (player: Player): void => {
-    const colour = changeColour(player.colour);
-    const updatedPlayer = {...player, colour};
+    const updatedPlayer = {...player, reaction: !player.reaction};
     dispatch(actions.editPlayer(updatedPlayer));
   },
   changeInitiative: (player: Player, initiative: number): void => {
