@@ -20,7 +20,7 @@ import {PlayerState} from '../reducer/players';
 import styles from '../common/styles';
 import colours from '../common/colours';
 
-const emptyBox = require('../resources/assets/other-empty.jpg');
+const emptyBox = require('../resources/boxes/other-empty.jpg');
 
 interface StateProps {
   players: Player[];
