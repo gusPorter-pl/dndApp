@@ -1,14 +1,16 @@
 import React from 'react';
 import {View, Text, Button, ScrollView} from 'react-native';
 import {connect} from 'react-redux';
+import Header from '../common/components/header';
 
+import PageNavProps from './navigation';
 import {Player} from '../common/types';
 import {PlayerDispatch} from '../store/players';
 import * as actions from '../actions/players';
 import * as storage from '../services/storage';
 import {PlayerState} from '../reducer/players';
 import styles from '../common/styles';
-import colours from '../resources/colours';
+import colours from '../common/colours';
 
 interface StateProps {
   players: Player[];
@@ -25,11 +27,9 @@ interface DispatchProps {
   getMock: () => void;
 }
 
-// type Props = StateProps & DispatchProps;
-// I did not use this type as I could not find a way around
-//   it when I included integration
+type Props = StateProps & DispatchProps & PageNavProps<'Initiative'>;
 
-function Initiative(props) {
+function Initiative(props: Props) {
   if (props.players.length == 0) {
     props.getPlayers();
   } else {
@@ -41,9 +41,10 @@ function Initiative(props) {
   }
   let line = true;
   return (
-    <View style={{height: '100%'}}>
-      <View style={[styles.body]}>
-        {props.players.map((player: Player) => {
+    <>
+      <Header title={props.route.name} />
+      <View style={styles.body}>
+        {props.players.map((player) => {
           return (
             <View key={player.name}>
               {line && <View style={{borderTopWidth: 1, flex: 1}} />}
@@ -121,17 +122,8 @@ function Initiative(props) {
             }}
           />
         </View>
-        <View style={{padding: 3, paddingTop: 7}}>
-          <Button
-            // Go to players
-            title={'Go to Players'}
-            onPress={() => {
-              props.navigation.navigate('Players');
-            }}
-          />
-        </View>
       </View>
-    </View>
+    </>
   );
 }
 
