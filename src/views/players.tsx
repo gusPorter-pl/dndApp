@@ -42,8 +42,6 @@ interface DispatchProps {
 type Props = StateProps & DispatchProps & PageNavProps<'Players'>;
 
 function Players(props: Props) {
-  console.info(props.players);
-  console.info(props.navigation);
   if (props.players.length == 0) {
     props.getPlayers();
   }
