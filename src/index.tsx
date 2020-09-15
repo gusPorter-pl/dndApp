@@ -1,51 +1,18 @@
 import React, {PureComponent} from 'react';
-import {StatusBar, View, TouchableOpacity, Image, Text} from 'react-native';
+import {StatusBar} from 'react-native';
 import {Provider} from 'react-redux';
-import {createStackNavigator} from '@react-navigation/stack';
-import {NavigationContainer, useNavigation} from '@react-navigation/native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {NavigationContainer} from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import playerStore from './store/players';
+import {PageParamList} from './views/navigation';
 import Players from './views/players';
 import Initiative from './views/initiative';
-import styles from './common/styles';
-import colours from './resources/colours';
+import Spells from './views/spells';
+import colours from './common/colours';
 
-const emptyBox = require('./resources/assets/empty.jpg');
-
-const Stack = createStackNavigator();
-
-const HomeScreen = () => {
-  const navigation = useNavigation();
-  const pages = ['Players', 'Initiative'];
-  return (
-    <View style={styles.background}>
-      <View style={{marginTop: 10, alignItems: 'center'}}>
-        {pages.map((page) => {
-          return (
-            <View style={{marginTop: 5}} key={page}>
-              <TouchableOpacity
-                onPress={() => {
-                  navigation.navigate(page);
-                }}
-                activeOpacity={0.7}
-              >
-                <View style={styles.container}>
-                  <Image
-                    source={emptyBox}
-                    style={{width: 250, height: 60, resizeMode: 'stretch'}}
-                  />
-                  <View style={styles.overlapView}>
-                    <Text style={styles.overlapText}>{page}</Text>
-                  </View>
-                </View>
-              </TouchableOpacity>
-            </View>
-          );
-        })}
-      </View>
-    </View>
-  );
-};
+const Tabs = createBottomTabNavigator<PageParamList>();
 
 export default class App extends PureComponent {
   public constructor(props: {}) {
@@ -55,48 +22,47 @@ export default class App extends PureComponent {
   public render() {
     return (
       <Provider store={playerStore}>
-        <StatusBar
-          barStyle="light-content"
-          backgroundColor={colours.backgroundColour}
-        />
+        <StatusBar barStyle="light-content" backgroundColor={colours.header} />
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="Home">
-            <Stack.Screen
-              name="Home"
-              component={HomeScreen}
-              options={{
-                ...options,
-                headerTitleStyle: {
-                  ...options.headerTitleStyle,
-                  textAlign: 'center'
-                }
-              }}
-            />
-            <Stack.Screen
-              name="Initiative"
-              component={Initiative}
-              options={options}
-            />
-            <Stack.Screen
+          <Tabs.Navigator
+            initialRouteName="Players"
+            tabBarOptions={{
+              activeTintColor: colours.background,
+              activeBackgroundColor: colours.header,
+              inactiveTintColor: colours.header,
+              inactiveBackgroundColor: colours.background
+            }}
+          >
+            <Tabs.Screen
               name="Players"
               component={Players}
-              options={options}
+              options={{
+                tabBarIcon: ({color}) => (
+                  <Icon name="user-friends" size={20} color={color} />
+                )
+              }}
             />
-          </Stack.Navigator>
+            <Tabs.Screen
+              name="Initiative"
+              component={Initiative}
+              options={{
+                tabBarIcon: ({color}) => (
+                  <Icon name="list" size={20} color={color} />
+                )
+              }}
+            />
+            <Tabs.Screen
+              name="Spells"
+              component={Spells}
+              options={{
+                tabBarIcon: ({color}) => (
+                  <Icon name="dice-d20" size={20} color={color} />
+                )
+              }}
+            />
+          </Tabs.Navigator>
         </NavigationContainer>
       </Provider>
     );
   }
 }
-
-const options = {
-  headerTintColor: '#fff',
-  headerStyle: {
-    backgroundColor: colours.backgroundColour
-  },
-  headerTitleStyle: {
-    fontSize: 25,
-    fontWeight: '100',
-    flex: 1
-  }
-};
