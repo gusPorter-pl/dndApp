@@ -52,7 +52,7 @@ export default function reducer(
       return {
         ...state,
         players: [
-          {name: 'Bizzie', initiative: 20, reaction: true, edit: true},
+          {name: 'Bizzie', initiative: 20, reaction: true, edit: false},
           {name: 'Xaylor', initiative: 14, reaction: true, edit: false},
           {name: 'Salrakir', initiative: 2, reaction: true, edit: false},
           {name: 'Mrtlvnjr', initiative: 8, reaction: true, edit: false},
