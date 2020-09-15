@@ -1,8 +1,18 @@
 import {StyleSheet} from 'react-native';
+import colours from './colours';
 
 const styles = StyleSheet.create({
+  header: {
+    backgroundColor: colours.header,
+    paddingVertical: 10
+  },
+  headerText: {
+    fontSize: 25,
+    color: '#fff',
+    fontWeight: '100'
+  },
   background: {
-    backgroundColor: '#dcdddf',
+    backgroundColor: colours.background,
     flex: 1,
     padding: 5,
     paddingTop: 15
@@ -17,7 +27,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   overlapText: {
-    color: 'black',
+    color: '#000',
     fontSize: 22
   },
   centre: {
@@ -25,10 +35,11 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   body: {
+    height: '100%',
+    flex: 1,
     padding: 30,
-    backgroundColor: '#f2f2f2',
-    justifyContent: 'center',
-    flex: 1
+    backgroundColor: colours.background,
+    justifyContent: 'center'
   },
   innerBody: {
     padding: 10,
