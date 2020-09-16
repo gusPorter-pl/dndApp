@@ -52,7 +52,7 @@ export default class App extends PureComponent {
               }}
             />
             <Tabs.Screen
-              name="SpellStack"
+              name="Spells"
               component={SpellStack}
               options={{
                 tabBarIcon: ({color}) => (
