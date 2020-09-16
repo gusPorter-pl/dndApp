@@ -21,7 +21,7 @@ function Spells(props: Props) {
     <>
       <Header title={props.route.name} />
       <View style={styles.body}>
-        <TextInput style={styles.textInput} />
+        <TextInput style={styles.textInput} placeholder="Search" />
         <ScrollView>
           <View style={{flex: 1}}>
             {spellNames.map((spell) => {
