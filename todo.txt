@@ -3,11 +3,14 @@ Players Page:
   Have "Update Player" update the player in redux
 
 Initiative Page:
-  Add a begin initiative page that goes onto actual initiative page
+  Add a begin initiative page that goes onto actual initiative page (hooked to stack navigator)
   Turn grids into boxes
 
 Spells Page:
   Have search acitvely display all spells
   Add spell gifs and json file to see if there are gifs
+
+Spell Display Page:
+  Click to reveal other side of card
 
 Also add markdown file describing repo
