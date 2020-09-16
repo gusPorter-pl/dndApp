@@ -78,22 +78,12 @@ function Players(props: Props) {
                   <TextInput
                     defaultValue={player.name}
                     placeholder="Name"
-                    style={{
-                      marginVertical: 5,
-                      height: 40,
-                      paddingHorizontal: 10,
-                      borderWidth: 1
-                    }}
+                    style={styles.textInput}
                   ></TextInput>
                   <TextInput
                     defaultValue={player.initiative.toString()}
                     placeholder="Initiative"
-                    style={{
-                      marginVertical: 5,
-                      height: 40,
-                      paddingHorizontal: 10,
-                      borderWidth: 1
-                    }}
+                    style={styles.textInput}
                   ></TextInput>
                   <Button
                     title="Update Player"
