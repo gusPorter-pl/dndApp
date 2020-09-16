@@ -4,8 +4,6 @@ import {View, Image, StatusBar} from 'react-native';
 import SpellNavProps from './navigation';
 import styles from './common/styles';
 import spells from './common/spells';
-import {Spell} from './common/types';
-import Header from './common/components/header';
 
 type Props = SpellNavProps<'SpellDisplay'>;
 
