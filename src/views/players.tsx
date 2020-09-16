@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import {connect} from 'react-redux';
 import Header from '../common/components/header';
+import Box from '../common/components/box';
 
 import PageNavProps from './navigation';
 import {Player} from '../common/types';
@@ -57,22 +58,13 @@ function Players(props: Props) {
         {props.players.map((player: Player) => {
           return (
             <View key={player.name}>
-              <TouchableOpacity
-                onPress={() => {
+              <Box
+                text={player.name}
+                function={() => {
                   props.changeEdit(player, true);
                 }}
-                activeOpacity={0.7}
-              >
-                <View style={styles.container}>
-                  <Image
-                    source={emptyBox}
-                    style={{width: 350, height: 60, resizeMode: 'stretch'}}
-                  />
-                  <View style={styles.overlapView}>
-                    <Text style={styles.overlapText}>{player.name}</Text>
-                  </View>
-                </View>
-              </TouchableOpacity>
+                type={0}
+              />
               {player.edit === true && (
                 <View style={{paddingHorizontal: 25, paddingVertical: 10}}>
                   <TextInput
