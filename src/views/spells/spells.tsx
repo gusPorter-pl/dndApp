@@ -27,6 +27,7 @@ function Spells(props: Props) {
             {spellNames.map((spell) => {
               return (
                 <Box
+                  key={spells[spell].displayName}
                   text={spells[spell].displayName}
                   type={1}
                   style={{paddingVertical: 3}}
