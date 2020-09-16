@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, Image} from 'react-native';
+import {View, Text, TouchableOpacity, Image, ViewStyle} from 'react-native';
 
 import styles from '../styles';
 
@@ -8,8 +8,9 @@ const box2 = require('../../resources/boxes/empty.jpg');
 
 interface Props {
   text: string;
-  function?: () => void;
   type: 0 | 1;
+  function?: () => void;
+  style?: ViewStyle;
 }
 
 export default function Box(props: Props) {
@@ -20,7 +21,7 @@ export default function Box(props: Props) {
       }}
       activeOpacity={0.7}
     >
-      <View style={styles.container}>
+      <View style={[styles.container, props.style]}>
         {props.type === 0 && (
           <Image
             source={box1}
