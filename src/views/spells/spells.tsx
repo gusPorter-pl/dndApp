@@ -11,14 +11,14 @@ import {
 import Header from '../../common/components/header';
 import Box from '../../common/components/box';
 
-import PageNavProps from '../navigation';
+import SpellNavProps from './navigation';
 import styles from '../../common/styles';
 import {kebabCaseConverter} from '../../common/functions';
 
 const spells = require('../../common/spells');
 const spellNames = Object.keys(spells);
 
-type Props = PageNavProps<'Spells'>;
+type Props = SpellNavProps<'Spells'>;
 
 function Spells(props: Props) {
   console.info(spellNames);

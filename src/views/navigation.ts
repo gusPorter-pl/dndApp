@@ -5,7 +5,7 @@ export type PageParamList = {
   Home: undefined;
   Players: undefined;
   Initiative: undefined;
-  Spells: undefined;
+  SpellStack: undefined;
 };
 
 type PageNavProps<key extends keyof PageParamList> = {

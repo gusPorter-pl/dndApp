@@ -9,7 +9,7 @@ import playerStore from './store/players';
 import {PageParamList} from './views/navigation';
 import Players from './views/players';
 import Initiative from './views/initiative';
-import Spells from './views/spells';
+import SpellStack from './views/spells';
 import colours from './common/colours';
 
 const Tabs = createBottomTabNavigator<PageParamList>();
@@ -52,8 +52,8 @@ export default class App extends PureComponent {
               }}
             />
             <Tabs.Screen
-              name="Spells"
-              component={Spells}
+              name="SpellStack"
+              component={SpellStack}
               options={{
                 tabBarIcon: ({color}) => (
                   <Icon name="dice-d20" size={20} color={color} />
