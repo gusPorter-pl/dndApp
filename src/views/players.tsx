@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-  ScrollView,
-  View,
-  Text,
-  Image,
-  Button,
-  TextInput,
-  TouchableOpacity
-} from 'react-native';
+import {ScrollView, View, Button, TextInput} from 'react-native';
 import {connect} from 'react-redux';
 import Header from '../common/components/header';
 import Box from '../common/components/box';
