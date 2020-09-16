@@ -7,7 +7,6 @@ Initiative Page:
   Turn grids into boxes
 
 Spells Page:
-  Move spelldisplay out of tab navigator to stack navigator
   Have search acitvely display all spells
   Add spell gifs and json file to see if there are gifs
 
