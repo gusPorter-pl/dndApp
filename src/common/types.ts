@@ -8,3 +8,10 @@ export interface Player {
   // legendaryActions?: number;
   edit: boolean; // This is for editing the characters options on the Players screen
 }
+
+export interface Spell {
+  level: number;
+  gif: boolean;
+  ifNotGif?: Object;
+  displayName?: string;
+}
