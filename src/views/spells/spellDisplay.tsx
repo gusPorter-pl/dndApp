@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, View, Text, Image} from 'react-native';
+import {ScrollView, View, Text, Image, StatusBar} from 'react-native';
 
 import SpellNavProps from './navigation';
 import styles from '../../common/styles';
@@ -26,6 +26,7 @@ function SpellDisplay(props: Props) {
   return (
     <>
       {/* <Header title={spell.displayName} /> */}
+      <StatusBar hidden={true} />
       <View style={[styles.body, {padding: 0}]}>
         {spell.gif && (
           <Image
