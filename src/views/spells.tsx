@@ -1,19 +1,19 @@
 import React from 'react';
 import {ScrollView, View, TextInput} from 'react-native';
-import Header from '../../common/components/header';
-import Box from '../../common/components/box';
+import Header from '../common/components/header';
+import Box from '../common/components/box';
 
 import SpellNavProps from './navigation';
-import styles from '../../common/styles';
-import {kebabCaseConverter} from '../../common/functions';
-import spells from '../../common/spells';
+import MainNavProps from '../navigation';
+import styles from '../common/styles';
+import {kebabCaseConverter} from '../common/functions';
+import spells from '../common/spells';
 
 const spellNames = Object.keys(spells);
 
-type Props = SpellNavProps<'Spells'>;
+type Props = MainNavProps<'Tabs'>;
 
 function Spells(props: Props) {
-  console.info('Spell Names: ' + spellNames);
   spellNames.forEach((spellName) => {
     spells[spellName].displayName = kebabCaseConverter(spellName);
   });
