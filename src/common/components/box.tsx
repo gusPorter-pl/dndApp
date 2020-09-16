@@ -25,13 +25,13 @@ export default function Box(props: Props) {
         {props.type === 0 && (
           <Image
             source={box1}
-            style={{width: 350, height: 60, resizeMode: 'stretch'}}
+            style={{width: '100%', height: 60, resizeMode: 'stretch'}}
           />
         )}
         {props.type === 1 && (
           <Image
             source={box2}
-            style={{width: 350, height: 60, resizeMode: 'stretch'}}
+            style={{width: '100%', height: 60, resizeMode: 'stretch'}}
           />
         )}
         <View style={styles.overlapView}>
