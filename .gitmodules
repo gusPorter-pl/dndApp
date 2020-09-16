@@ -1,3 +1,6 @@
 [submodule "resources/spells"]
 	path = resources/spells
 	url = https://github.com/gusPorter-pl/spell-gifs
+[submodule "src/resources/spell-gifs"]
+	path = src/resources/spell-gifs
+	url = https://github.com/gusPorter-pl/spell-gifs.git
