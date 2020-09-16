@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   body: {
     height: '100%',
     flex: 1,
-    padding: 30,
+    padding: 20,
     backgroundColor: colours.background,
     justifyContent: 'center'
   },
