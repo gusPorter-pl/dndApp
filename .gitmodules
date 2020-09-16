@@ -1,0 +1,3 @@
+[submodule "resources/spells"]
+	path = resources/spells
+	url = https://github.com/gusPorter-pl/spell-gifs
