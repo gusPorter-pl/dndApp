@@ -1,18 +1,20 @@
 import {Player} from '../common/types';
-import {PlayerActionTypes} from '../actions/players';
+import {ActionTypes} from './actions';
 
-export interface PlayerState {
+export interface State {
   players: Player[];
+  spellNames: string[];
 }
 
-export const initialState: PlayerState = {
-  players: []
+export const initialState: State = {
+  players: [],
+  spellNames: []
 };
 
 export default function reducer(
-  state: PlayerState = initialState,
-  action: PlayerActionTypes
-): PlayerState {
+  state: State = initialState,
+  action: ActionTypes
+): State {
   switch (action.type) {
     case 'addPlayer':
       return {
@@ -58,6 +60,16 @@ export default function reducer(
           {name: 'Mrtlvnjr', initiative: 8, reaction: true, edit: false},
           {name: 'Pop Princess', initiative: 17, reaction: true, edit: false}
         ]
+      };
+    case 'changeSpellNames':
+      return {
+        ...state,
+        spellNames: action.allSpellNames.filter((spellName) => {
+          if (action.searchText !== '') {
+            return spellName.includes(action.searchText);
+          }
+          return false;
+        })
       };
     default:
       return state;

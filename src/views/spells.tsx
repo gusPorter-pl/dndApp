@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {ScrollView, View, TextInput} from 'react-native';
+import {connect} from 'react-redux';
 import Header from '../common/components/header';
 import Box from '../common/components/box';
 
@@ -7,24 +8,43 @@ import MainNavProps from '../navigation';
 import styles from '../common/styles';
 import {kebabCaseConverter} from '../common/functions';
 import spells from '../common/spells';
+import {State} from '../redux/reducer';
+import {StoreDispatch} from '../redux/store';
+import * as actions from '../redux/actions';
 
-const spellNames = Object.keys(spells);
-spellNames.sort((a, b) => (a < b ? -1 : 1));
+let allSpellNames = Object.keys(spells);
+allSpellNames.sort((a, b) => (a < b ? -1 : 1));
 
-type Props = MainNavProps<'Tabs'>;
+interface StateProps {
+  spellNames: string[];
+}
+
+interface DispatchProps {
+  changeSpellNames: (searchText: string, allSpellNames: string[]) => void;
+}
+
+type Props = StateProps & DispatchProps & MainNavProps<'Tabs'>;
 
 function Spells(props: Props) {
-  spellNames.forEach((spellName) => {
+  const [searchText, setSearchText] = useState('');
+  allSpellNames.forEach((spellName) => {
     spells[spellName].displayName = kebabCaseConverter(spellName);
   });
   return (
     <>
       <Header title={props.route.name} />
       <View style={styles.body}>
-        <TextInput style={styles.textInput} placeholder="Search" />
+        <TextInput
+          style={styles.textInput}
+          placeholder="Search"
+          onChangeText={(searchText) => {
+            setSearchText(searchText);
+            props.changeSpellNames(searchText, allSpellNames);
+          }}
+        />
         <ScrollView>
           <View style={{flex: 1}}>
-            {spellNames.map((spell) => {
+            {props.spellNames.map((spell) => {
               return (
                 <Box
                   key={spells[spell].displayName}
@@ -51,4 +71,14 @@ function Spells(props: Props) {
   );
 }
 
-export default Spells;
+const mapStateToProps = (state: State): StateProps => ({
+  spellNames: state.spellNames
+});
+
+const mapDispatchToProps = (dispatch: StoreDispatch): DispatchProps => ({
+  changeSpellNames: (searchText: string, allSpellNames: string[]) => {
+    dispatch(actions.changeSpellNames(searchText, allSpellNames));
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Spells);

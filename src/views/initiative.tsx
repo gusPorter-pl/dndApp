@@ -5,10 +5,10 @@ import Header from '../common/components/header';
 
 import PageNavProps from './navigation';
 import {Player} from '../common/types';
-import {PlayerDispatch} from '../store/players';
-import * as actions from '../actions/players';
+import {State} from '../redux/reducer';
+import {StoreDispatch} from '../redux/store';
+import * as actions from '../redux/actions';
 import * as storage from '../services/storage';
-import {PlayerState} from '../reducer/players';
 import styles from '../common/styles';
 import colours from '../common/colours';
 
@@ -127,11 +127,11 @@ function Initiative(props: Props) {
   );
 }
 
-const mapStateToProps = (state: PlayerState): StateProps => ({
+const mapStateToProps = (state: State): StateProps => ({
   players: state.players
 });
 
-const mapDispatchToProps = (dispatch: PlayerDispatch): DispatchProps => ({
+const mapDispatchToProps = (dispatch: StoreDispatch): DispatchProps => ({
   addPlayer: (player: Player) => {
     dispatch(actions.addPlayer(player));
   },

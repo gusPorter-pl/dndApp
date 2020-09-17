@@ -5,11 +5,11 @@ import Header from '../common/components/header';
 import Box from '../common/components/box';
 
 import PageNavProps from './navigation';
+import {State} from '../redux/reducer';
+import {StoreDispatch} from '../redux/store';
 import {Player} from '../common/types';
-import {PlayerDispatch} from '../store/players';
-import * as actions from '../actions/players';
+import * as actions from '../redux/actions';
 import * as storage from '../services/storage';
-import {PlayerState} from '../reducer/players';
 import styles from '../common/styles';
 import colours from '../common/colours';
 
@@ -84,11 +84,11 @@ function Players(props: Props) {
   );
 }
 
-const mapStateToProps = (state: PlayerState): StateProps => ({
+const mapStateToProps = (state: State): StateProps => ({
   players: state.players
 });
 
-const mapDispatchToProps = (dispatch: PlayerDispatch): DispatchProps => ({
+const mapDispatchToProps = (dispatch: StoreDispatch): DispatchProps => ({
   changeEdit: (player: Player, edit: boolean): void => {
     const updatedPlayer = {...player, edit};
     dispatch(actions.editPlayer(updatedPlayer));

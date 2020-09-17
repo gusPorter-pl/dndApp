@@ -1,15 +1,16 @@
 import {Player} from '../common/types';
 
-export type PlayerActionTypes =
+export type ActionTypes =
   | {type: 'addPlayer'; player: Player}
   | {type: 'removePlayer'; name: string}
   | {type: 'editPlayer'; player: Player}
   | {type: 'loadPlayers'; players: Player[]}
   | {type: 'setAllEditFalse'; players: Player[]}
+  | {type: 'changeSpellNames'; searchText: string; allSpellNames: string[]}
   | {type: 'getMock'};
 
 export const addPlayer = (player: Player) => {
-  const action: PlayerActionTypes = {
+  const action: ActionTypes = {
     type: 'addPlayer',
     player
   };
@@ -17,7 +18,7 @@ export const addPlayer = (player: Player) => {
 };
 
 export const removePlayer = (name: string) => {
-  const action: PlayerActionTypes = {
+  const action: ActionTypes = {
     type: 'removePlayer',
     name
   };
@@ -25,7 +26,7 @@ export const removePlayer = (name: string) => {
 };
 
 export const editPlayer = (player: Player) => {
-  const action: PlayerActionTypes = {
+  const action: ActionTypes = {
     type: 'editPlayer',
     player
   };
@@ -33,7 +34,7 @@ export const editPlayer = (player: Player) => {
 };
 
 export const loadPlayers = (players: Player[]) => {
-  const action: PlayerActionTypes = {
+  const action: ActionTypes = {
     type: 'loadPlayers',
     players
   };
@@ -41,15 +42,27 @@ export const loadPlayers = (players: Player[]) => {
 };
 
 export const setAllEditFalse = (players: Player[]) => {
-  const action: PlayerActionTypes = {
+  const action: ActionTypes = {
     type: 'setAllEditFalse',
     players
   };
   return action;
 };
 
+export const changeSpellNames = (
+  searchText: string,
+  allSpellNames: string[]
+) => {
+  const action: ActionTypes = {
+    type: 'changeSpellNames',
+    searchText,
+    allSpellNames
+  };
+  return action;
+};
+
 export const getMock = () => {
-  const action: PlayerActionTypes = {
+  const action: ActionTypes = {
     type: 'getMock'
   };
   return action;

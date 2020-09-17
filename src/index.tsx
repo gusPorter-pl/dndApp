@@ -5,7 +5,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 
-import playerStore from './store/players';
+import store from './redux/store';
 import TabScreen from './views';
 import colours from './common/colours';
 import {MainParamList} from './navigation';
@@ -20,7 +20,7 @@ export default class App extends PureComponent {
 
   public render() {
     return (
-      <Provider store={playerStore}>
+      <Provider store={store}>
         <SafeAreaProvider>
           <StatusBar
             barStyle="light-content"
