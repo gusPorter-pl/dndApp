@@ -3,13 +3,13 @@ import {ScrollView, View, TextInput} from 'react-native';
 import Header from '../common/components/header';
 import Box from '../common/components/box';
 
-import SpellNavProps from './navigation';
 import MainNavProps from '../navigation';
 import styles from '../common/styles';
 import {kebabCaseConverter} from '../common/functions';
 import spells from '../common/spells';
 
 const spellNames = Object.keys(spells);
+spellNames.sort((a, b) => (a < b ? -1 : 1));
 
 type Props = MainNavProps<'Tabs'>;
 
@@ -28,7 +28,11 @@ function Spells(props: Props) {
               return (
                 <Box
                   key={spells[spell].displayName}
-                  text={spells[spell].displayName}
+                  text={
+                    spells[spell].gif
+                      ? spells[spell].displayName
+                      : spells[spell].displayName + ' (no gif)'
+                  }
                   type={1}
                   style={{paddingVertical: 3}}
                   function={() =>
