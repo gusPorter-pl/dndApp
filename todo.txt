@@ -7,7 +7,6 @@ Initiative Page:
   Turn grids into boxes
 
 Spells Page:
-  Have search acitvely display all spells
   Add spell gifs and json file to see if there are gifs
 
 Spell Display Page:
