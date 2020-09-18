@@ -6,7 +6,7 @@ import Box from '../common/components/box';
 
 import MainNavProps from '../navigation';
 import styles from '../common/styles';
-import {kebabCaseConverter} from '../common/functions';
+import * as stringFormat from '../common/functions';
 import spells from '../common/spells';
 import {State} from '../redux/reducer';
 import {StoreDispatch} from '../redux/store';
@@ -26,7 +26,7 @@ type Props = StateProps & DispatchProps & MainNavProps<'Tabs'>;
 function Spells(props: Props) {
   const [searchText, setSearchText] = useState('');
   props.spellNames.forEach((spellName) => {
-    spells[spellName].displayName = kebabCaseConverter(spellName);
+    spells[spellName].displayName = stringFormat.kebabCaseConverter(spellName);
   });
   props.spellNames.sort((a, b) => (a < b ? -1 : 1));
   return (
@@ -38,7 +38,9 @@ function Spells(props: Props) {
           placeholder="Search"
           onChangeText={(searchText: string) => {
             setSearchText(searchText);
-            props.changeSpellNames(searchText.toLowerCase());
+            props.changeSpellNames(
+              stringFormat.hyphenToSpace(searchText.toLowerCase())
+            );
           }}
         />
         <ScrollView>
