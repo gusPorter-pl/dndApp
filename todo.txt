@@ -11,5 +11,6 @@ Spells Page:
 
 Spell Display Page:
   Click to reveal other side of card
+  Move into views, move other screens into tabs folder
 
 Also add markdown file describing repo
