@@ -12,24 +12,23 @@ import {State} from '../redux/reducer';
 import {StoreDispatch} from '../redux/store';
 import * as actions from '../redux/actions';
 
-let allSpellNames = Object.keys(spells);
-allSpellNames.sort((a, b) => (a < b ? -1 : 1));
-
 interface StateProps {
   spellNames: string[];
+  allSpellNames: string[];
 }
 
 interface DispatchProps {
-  changeSpellNames: (searchText: string, allSpellNames: string[]) => void;
+  changeSpellNames: (searchText: string) => void;
 }
 
 type Props = StateProps & DispatchProps & MainNavProps<'Tabs'>;
 
 function Spells(props: Props) {
   const [searchText, setSearchText] = useState('');
-  allSpellNames.forEach((spellName) => {
+  props.spellNames.forEach((spellName) => {
     spells[spellName].displayName = kebabCaseConverter(spellName);
   });
+  props.spellNames.sort((a, b) => (a < b ? -1 : 1));
   return (
     <>
       <Header title={props.route.name} />
@@ -37,9 +36,9 @@ function Spells(props: Props) {
         <TextInput
           style={styles.textInput}
           placeholder="Search"
-          onChangeText={(searchText) => {
+          onChangeText={(searchText: string) => {
             setSearchText(searchText);
-            props.changeSpellNames(searchText, allSpellNames);
+            props.changeSpellNames(searchText.toLowerCase());
           }}
         />
         <ScrollView>
@@ -72,12 +71,13 @@ function Spells(props: Props) {
 }
 
 const mapStateToProps = (state: State): StateProps => ({
-  spellNames: state.spellNames
+  spellNames: state.spellNames,
+  allSpellNames: state.allSpellNames
 });
 
 const mapDispatchToProps = (dispatch: StoreDispatch): DispatchProps => ({
-  changeSpellNames: (searchText: string, allSpellNames: string[]) => {
-    dispatch(actions.changeSpellNames(searchText, allSpellNames));
+  changeSpellNames: (searchText: string) => {
+    dispatch(actions.changeSpellNames(searchText));
   }
 });
 

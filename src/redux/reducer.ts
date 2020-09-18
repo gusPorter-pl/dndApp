@@ -1,14 +1,17 @@
 import {Player} from '../common/types';
 import {ActionTypes} from './actions';
+import spells from '../common/spells';
 
 export interface State {
   players: Player[];
   spellNames: string[];
+  allSpellNames: string[];
 }
 
 export const initialState: State = {
   players: [],
-  spellNames: []
+  spellNames: [],
+  allSpellNames: Object.keys(spells)
 };
 
 export default function reducer(
@@ -64,7 +67,7 @@ export default function reducer(
     case 'changeSpellNames':
       return {
         ...state,
-        spellNames: action.allSpellNames.filter((spellName) => {
+        spellNames: state.allSpellNames.filter((spellName) => {
           if (action.searchText !== '') {
             return spellName.includes(action.searchText);
           }

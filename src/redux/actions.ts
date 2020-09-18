@@ -6,7 +6,7 @@ export type ActionTypes =
   | {type: 'editPlayer'; player: Player}
   | {type: 'loadPlayers'; players: Player[]}
   | {type: 'setAllEditFalse'; players: Player[]}
-  | {type: 'changeSpellNames'; searchText: string; allSpellNames: string[]}
+  | {type: 'changeSpellNames'; searchText: string}
   | {type: 'getMock'};
 
 export const addPlayer = (player: Player) => {
@@ -49,14 +49,10 @@ export const setAllEditFalse = (players: Player[]) => {
   return action;
 };
 
-export const changeSpellNames = (
-  searchText: string,
-  allSpellNames: string[]
-) => {
+export const changeSpellNames = (searchText: string) => {
   const action: ActionTypes = {
     type: 'changeSpellNames',
-    searchText,
-    allSpellNames
+    searchText
   };
   return action;
 };
