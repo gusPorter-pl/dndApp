@@ -46,13 +46,6 @@ export default function reducer(
         ...state,
         players: action.players
       };
-    case 'setAllEditFalse':
-      return {
-        ...state,
-        players: state.players.map((player: Player) => {
-          return player.edit === true ? {...player, edit: false} : player;
-        })
-      };
     case 'getMock':
       return {
         ...state,

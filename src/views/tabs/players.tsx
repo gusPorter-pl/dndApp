@@ -24,7 +24,6 @@ interface DispatchProps {
   changeColour: (player: Player) => void;
   savePlayers: (players: Player[]) => void;
   getPlayers: () => void;
-  setAllEditFalse: (players: Player[]) => void;
 
   getMock: () => void;
 }
@@ -61,12 +60,12 @@ function Players(props: Props) {
                     defaultValue={player.name}
                     placeholder="Name"
                     style={styles.textInput}
-                  ></TextInput>
+                  />
                   <TextInput
                     defaultValue={player.initiative.toString()}
                     placeholder="Initiative"
                     style={styles.textInput}
-                  ></TextInput>
+                  />
                   <Button
                     title="Update Player"
                     color={colours.grey}
@@ -111,9 +110,6 @@ const mapDispatchToProps = (dispatch: StoreDispatch): DispatchProps => ({
   },
   savePlayers: (players: Player[]): void => {
     storage.savePlayers(players);
-  },
-  setAllEditFalse: (players: Player[]): void => {
-    dispatch(actions.setAllEditFalse(players));
   },
   getMock: (): void => {
     dispatch(actions.getMock());
