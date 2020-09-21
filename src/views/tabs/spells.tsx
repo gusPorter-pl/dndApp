@@ -24,7 +24,7 @@ interface DispatchProps {
 type Props = StateProps & DispatchProps & MainNavProps<'Tabs'>;
 
 function Spells(props: Props) {
-  const [searchText, setSearchText] = useState('');
+  // const [searchText, setSearchText] = useState('');
   props.spellNames.forEach((spellName) => {
     spells[spellName].displayName = stringFormat.kebabCaseConverter(spellName);
   });
@@ -37,7 +37,7 @@ function Spells(props: Props) {
           style={styles.textInput}
           placeholder="Search"
           onChangeText={(searchText: string) => {
-            setSearchText(searchText);
+            // setSearchText(searchText);
             props.changeSpellNames(
               stringFormat.hyphenToSpace(searchText.toLowerCase())
             );
@@ -56,12 +56,12 @@ function Spells(props: Props) {
                   }
                   type={1}
                   style={{paddingVertical: 3}}
-                  function={() =>
+                  function={() => {
                     props.navigation.navigate('SpellDisplay', {
                       spellName: spell,
                       spell: spells[spell]
-                    })
-                  }
+                    });
+                  }}
                 />
               );
             })}

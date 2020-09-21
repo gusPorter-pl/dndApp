@@ -2,34 +2,6 @@ import {StyleSheet} from 'react-native';
 import colours from './colours';
 
 const styles = StyleSheet.create({
-  header: {
-    backgroundColor: colours.header,
-    paddingVertical: 10
-  },
-  headerText: {
-    fontSize: 25,
-    color: '#fff',
-    fontWeight: '100'
-  },
-  background: {
-    backgroundColor: colours.background,
-    flex: 1,
-    padding: 5,
-    paddingTop: 15
-  },
-  container: {
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  overlapView: {
-    position: 'absolute',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  overlapText: {
-    color: '#000',
-    fontSize: 22
-  },
   centre: {
     justifyContent: 'center',
     alignItems: 'center'
@@ -48,9 +20,6 @@ const styles = StyleSheet.create({
     borderRightWidth: 1,
     flexDirection: 'row',
     justifyContent: 'space-between'
-  },
-  setSize: {
-    width: 30
   },
   textInput: {
     marginVertical: 5,

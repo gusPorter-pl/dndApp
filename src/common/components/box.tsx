@@ -1,5 +1,12 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, Image, ViewStyle} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  ViewStyle,
+  StyleSheet
+} from 'react-native';
 
 import styles from '../styles';
 
@@ -21,7 +28,7 @@ export default function Box(props: Props) {
       }}
       activeOpacity={0.7}
     >
-      <View style={[styles.container, props.style]}>
+      <View style={[styles.centre, props.style]}>
         {props.type === 0 && (
           <Image
             source={box1}
@@ -34,10 +41,22 @@ export default function Box(props: Props) {
             style={{width: '100%', height: 60, resizeMode: 'stretch'}}
           />
         )}
-        <View style={styles.overlapView}>
-          <Text style={styles.overlapText}>{props.text}</Text>
+        <View style={boxStyles.overlapView}>
+          <Text style={boxStyles.overlapText}>{props.text}</Text>
         </View>
       </View>
     </TouchableOpacity>
   );
 }
+
+const boxStyles = StyleSheet.create({
+  overlapView: {
+    position: 'absolute',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  overlapText: {
+    color: '#000',
+    fontSize: 22
+  }
+});

@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Button, ScrollView} from 'react-native';
+import {View, Text, Button, ScrollView, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 
 import PageNavProps from './navigation';
@@ -75,16 +75,7 @@ function Initiative(props: Props) {
                   />
                 </View>
                 <View style={{justifyContent: 'center', paddingLeft: 5}}>
-                  <Text
-                    style={[
-                      styles.setSize,
-                      {
-                        fontSize: 18,
-                        textAlign: 'center',
-                        alignItems: 'center'
-                      }
-                    ]}
-                  >
+                  <Text style={initiativeStyles.initiativeNumber}>
                     {player.initiative}
                   </Text>
                 </View>
@@ -126,6 +117,15 @@ function Initiative(props: Props) {
     </>
   );
 }
+
+const initiativeStyles = StyleSheet.create({
+  initiativeNumber: {
+    width: 30,
+    fontSize: 18,
+    textAlign: 'center',
+    alignItems: 'center'
+  }
+});
 
 const mapStateToProps = (state: State): StateProps => ({
   players: state.players
