@@ -759,11 +759,11 @@ const spells = {
     image: require('../resources/spell-gifs/2/moonbeam.gif'),
     description: require('../resources/spell-gifs/2/moonbeam-desc.jpg')
   },
-  "nysul's-magic-aura": {
+  "nystul's-magic-aura": {
     level: 3,
     gif: true,
-    image: require("../resources/spell-gifs/2/nysul's-magic-aura.gif"),
-    description: require("../resources/spell-gifs/2/nysul's-magic-aura-desc.jpg")
+    image: require("../resources/spell-gifs/2/nystul's-magic-aura.gif"),
+    description: require("../resources/spell-gifs/2/nystul's-magic-aura-desc.jpg")
   },
   'pass-without-trace': {
     level: 2,
