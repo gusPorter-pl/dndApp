@@ -1,53 +1,20 @@
 import React from 'react';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import {createStackNavigator} from '@react-navigation/stack';
 
-import {PageParamList} from '../views/navigation';
-import Players from './players';
-import Initiative from './initiative';
-import Spells from './spells';
-import colours from '../common/colours';
+import SpellDisplay from './spellDisplay';
+import TabScreen from './tabs';
+import {MainParamList} from './navigation';
 
-const Tabs = createBottomTabNavigator<PageParamList>();
+const Stack = createStackNavigator<MainParamList>();
 
-function TabsScreen() {
+function StackScreen() {
   return (
-    <Tabs.Navigator
-      initialRouteName="Players"
-      tabBarOptions={{
-        activeTintColor: colours.background,
-        activeBackgroundColor: colours.header,
-        inactiveTintColor: colours.header,
-        inactiveBackgroundColor: colours.background
-      }}
-    >
-      <Tabs.Screen
-        name="Players"
-        component={Players}
-        options={{
-          tabBarIcon: ({color}) => (
-            <Icon name="user-friends" size={20} color={color} />
-          )
-        }}
-      />
-      <Tabs.Screen
-        name="Initiative"
-        component={Initiative}
-        options={{
-          tabBarIcon: ({color}) => <Icon name="list" size={20} color={color} />
-        }}
-      />
-      <Tabs.Screen
-        name="Spells"
-        component={Spells}
-        options={{
-          tabBarIcon: ({color}) => (
-            <Icon name="dice-d20" size={20} color={color} />
-          )
-        }}
-      />
-    </Tabs.Navigator>
+    <Stack.Navigator headerMode="none">
+      <Stack.Screen name="Tabs" component={TabScreen} />
+      <Stack.Screen name="SpellDisplay" component={SpellDisplay} />
+      {/* <Stack.Screen name="InitiativeDisplay" component={InitiativeDisplay} /> */}
+    </Stack.Navigator>
   );
 }
 
-export default TabsScreen;
+export default StackScreen;
