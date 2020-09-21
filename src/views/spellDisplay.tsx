@@ -2,8 +2,8 @@ import React from 'react';
 import {View, Image, StatusBar} from 'react-native';
 
 import SpellNavProps from './navigation';
-import styles from './common/styles';
-import spells from './common/spells';
+import spells from '../common/spells';
+import styles from '../common/styles';
 
 type Props = SpellNavProps<'SpellDisplay'>;
 

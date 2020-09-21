@@ -1,16 +1,16 @@
 import React from 'react';
 import {View, Text, Button, ScrollView} from 'react-native';
 import {connect} from 'react-redux';
-import Header from '../common/components/header';
 
 import PageNavProps from './navigation';
-import {Player} from '../common/types';
-import {State} from '../redux/reducer';
-import {StoreDispatch} from '../redux/store';
-import * as actions from '../redux/actions';
-import * as storage from '../services/storage';
-import styles from '../common/styles';
-import colours from '../common/colours';
+import * as actions from '../../redux/actions';
+import {State} from '../../redux/reducer';
+import {StoreDispatch} from '../../redux/store';
+import * as storage from '../../services/storage';
+import colours from '../../common/colours';
+import styles from '../../common/styles';
+import {Player} from '../../common/types';
+import Header from '../../common/components/header';
 
 interface StateProps {
   players: Player[];

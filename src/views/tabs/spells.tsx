@@ -1,16 +1,16 @@
 import React, {useState} from 'react';
-import {ScrollView, View, TextInput} from 'react-native';
+import {ScrollView, View, TextInput, KeyboardAvoidingView} from 'react-native';
 import {connect} from 'react-redux';
-import Header from '../common/components/header';
-import Box from '../common/components/box';
 
 import MainNavProps from '../navigation';
-import styles from '../common/styles';
-import * as stringFormat from '../common/functions';
-import spells from '../common/spells';
-import {State} from '../redux/reducer';
-import {StoreDispatch} from '../redux/store';
-import * as actions from '../redux/actions';
+import * as actions from '../../redux/actions';
+import {State} from '../../redux/reducer';
+import {StoreDispatch} from '../../redux/store';
+import * as stringFormat from '../../common/functions';
+import spells from '../../common/spells';
+import styles from '../../common/styles';
+import Box from '../../common/components/box';
+import Header from '../../common/components/header';
 
 interface StateProps {
   spellNames: string[];
@@ -43,7 +43,7 @@ function Spells(props: Props) {
             );
           }}
         />
-        <ScrollView>
+        <ScrollView keyboardShouldPersistTaps={'always'}>
           <View style={{flex: 1}}>
             {props.spellNames.map((spell) => {
               return (
