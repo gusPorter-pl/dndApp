@@ -12,7 +12,7 @@ function SpellDisplay(props: Props) {
   const spellName = props.route.params.spellName;
   return (
     <>
-      <StatusBar hidden={true} />
+      <StatusBar backgroundColor="transparent" translucent={true} />
       <View style={[styles.body, {padding: 0}]}>
         {spell.gif && (
           <Image
