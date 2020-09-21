@@ -7,10 +7,12 @@ Initiative Page:
   Turn grids into boxes
 
 Spells Page:
-  Add spell gifs and json file to see if there are gifs
+  Add rest of spells
 
 Spell Display Page:
-  Click to reveal other side of card
-  Move into views, move other screens into tabs folder
+  Add previously viewed spells in redux to display
 
 Also add markdown file describing repo
+  With switch out spell files and gifs
+
+Document styles page
