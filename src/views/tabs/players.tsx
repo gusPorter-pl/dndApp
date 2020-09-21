@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {ScrollView, View, Button, TextInput} from 'react-native';
 import {connect} from 'react-redux';
 
@@ -18,7 +18,6 @@ interface StateProps {
 }
 
 interface DispatchProps {
-  changeEdit: (player: Player, edit: boolean) => void;
   addPlayer: (player: Player) => void;
   removePlayer: (name: string) => void; // Change this from string -> Player
   changeInitiative: (player: Player, initiative: number) => void; // Make this edit player
@@ -33,13 +32,14 @@ interface DispatchProps {
 type Props = StateProps & DispatchProps & PageNavProps<'Players'>;
 
 function Players(props: Props) {
+  const [playerEdit, setPlayerEdit] = useState('');
   if (props.players.length == 0) {
     props.getPlayers();
   }
 
   if (props.players) {
     props.players.sort((p, q) => (q.name > p.name ? -1 : 1));
-    // Sort by alphabetical in descending order
+    // Sort in alphabetical order
   }
   return (
     <>
@@ -51,11 +51,11 @@ function Players(props: Props) {
               <Box
                 text={player.name}
                 function={() => {
-                  props.changeEdit(player, true);
+                  setPlayerEdit(player.name === playerEdit ? '' : player.name);
                 }}
                 type={0}
               />
-              {player.edit === true && (
+              {player.name === playerEdit && (
                 <View style={{paddingHorizontal: 25, paddingVertical: 10}}>
                   <TextInput
                     defaultValue={player.name}
@@ -71,7 +71,7 @@ function Players(props: Props) {
                     title="Update Player"
                     color={colours.grey}
                     onPress={() => {
-                      props.changeEdit(player, false);
+                      // update player
                     }}
                   />
                 </View>
@@ -89,10 +89,6 @@ const mapStateToProps = (state: State): StateProps => ({
 });
 
 const mapDispatchToProps = (dispatch: StoreDispatch): DispatchProps => ({
-  changeEdit: (player: Player, edit: boolean): void => {
-    const updatedPlayer = {...player, edit};
-    dispatch(actions.editPlayer(updatedPlayer));
-  },
   addPlayer: (player: Player): void => {
     dispatch(actions.addPlayer(player));
   },
