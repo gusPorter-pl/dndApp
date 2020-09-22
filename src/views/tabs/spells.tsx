@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {PureComponent, useState} from 'react';
 import {ScrollView, View, TextInput, KeyboardAvoidingView} from 'react-native';
 import {connect} from 'react-redux';
 
@@ -23,53 +23,65 @@ interface DispatchProps {
 
 type Props = StateProps & DispatchProps & MainNavProps<'Tabs'>;
 
-function Spells(props: Props) {
-  // const [searchText, setSearchText] = useState('');
-  props.spellNames.forEach((spellName) => {
-    spells[spellName].displayName = stringFormat.kebabCaseConverter(spellName);
-  });
-  props.spellNames.sort((a, b) => (a < b ? -1 : 1));
-  return (
-    <>
-      <Header title={props.route.name} />
-      <View style={styles.body}>
-        <TextInput
-          style={styles.textInput}
-          placeholder="Search"
-          onChangeText={(searchText: string) => {
-            // setSearchText(searchText);
-            props.changeSpellNames(
-              stringFormat.hyphenToSpace(searchText.toLowerCase())
-            );
-          }}
-        />
-        <ScrollView keyboardShouldPersistTaps={'always'}>
-          <View style={{flex: 1}}>
-            {props.spellNames.map((spell) => {
-              return (
-                <Box
-                  key={spells[spell].displayName}
-                  text={
-                    spells[spell].gif
-                      ? spells[spell].displayName
-                      : spells[spell].displayName + ' (no gif)'
-                  }
-                  type={1}
-                  style={{paddingVertical: 3}}
-                  function={() => {
-                    props.navigation.navigate('SpellDisplay', {
-                      spellName: spell,
-                      spell: spells[spell]
-                    });
-                  }}
-                />
+class Spells extends PureComponent<Props> {
+  public constructor(props: Props) {
+    super(props);
+  }
+
+  // public componentDidMount() {
+  //   this.props.navigation.addListener('blur', () => {
+  //     this.props.changeSpellNames(stringFormat.hyphenToSpace(''));
+  //   });
+  // }
+
+  public render() {
+    this.props.spellNames.forEach((spellName) => {
+      spells[spellName].displayName = stringFormat.kebabCaseConverter(
+        spellName
+      );
+    });
+    this.props.spellNames.sort((a, b) => (a < b ? -1 : 1));
+    return (
+      <>
+        <Header title={this.props.route.name} />
+        <View style={styles.body}>
+          <TextInput
+            style={styles.textInput}
+            placeholder="Search"
+            onChangeText={(searchText: string) => {
+              this.props.changeSpellNames(
+                stringFormat.hyphenToSpace(searchText.toLowerCase())
               );
-            })}
-          </View>
-        </ScrollView>
-      </View>
-    </>
-  );
+            }}
+          />
+          <ScrollView keyboardShouldPersistTaps={'always'}>
+            <View style={{flex: 1}}>
+              {this.props.spellNames.map((spell) => {
+                return (
+                  <Box
+                    key={spells[spell].displayName}
+                    text={
+                      spells[spell].gif
+                        ? spells[spell].displayName
+                        : spells[spell].displayName + ' (no gif)'
+                    }
+                    type={1}
+                    style={{paddingVertical: 3}}
+                    function={() => {
+                      this.props.navigation.navigate('SpellDisplay', {
+                        spellName: spell,
+                        spell: spells[spell]
+                      });
+                    }}
+                  />
+                );
+              })}
+            </View>
+          </ScrollView>
+        </View>
+      </>
+    );
+  }
 }
 
 const mapStateToProps = (state: State): StateProps => ({

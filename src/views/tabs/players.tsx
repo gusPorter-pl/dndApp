@@ -1,6 +1,12 @@
-import React, {useState} from 'react';
-import {ScrollView, View, Button, TextInput} from 'react-native';
+import React, {PureComponent, useState, useCallback} from 'react';
+import {View, Button, TextInput} from 'react-native';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {connect} from 'react-redux';
+import {
+  Descriptor,
+  NavigationState,
+  useFocusEffect
+} from '@react-navigation/native';
 
 import PageNavProps from './navigation';
 import * as actions from '../../redux/actions';
@@ -12,6 +18,10 @@ import styles from '../../common/styles';
 import {Player} from '../../common/types';
 import Box from '../../common/components/box';
 import Header from '../../common/components/header';
+
+interface LocalState {
+  playerEdit: string;
+}
 
 interface StateProps {
   players: Player[];
@@ -30,57 +40,78 @@ interface DispatchProps {
 
 type Props = StateProps & DispatchProps & PageNavProps<'Players'>;
 
-function Players(props: Props) {
-  const [playerEdit, setPlayerEdit] = useState('');
-  if (props.players.length == 0) {
-    props.getPlayers();
+class Players extends PureComponent<Props, LocalState> {
+  public constructor(props: Props) {
+    super(props);
+    this.state = {
+      playerEdit: ''
+    };
   }
 
-  if (props.players) {
-    props.players.sort((p, q) => (q.name > p.name ? -1 : 1));
-    // Sort in alphabetical order
+  public componentDidMount() {
+    this.props.navigation.addListener('blur', () => {
+      this.setState({playerEdit: ''});
+    });
   }
-  return (
-    <>
-      <Header title={props.route.name} />
-      <View style={styles.body}>
-        {props.players.map((player: Player) => {
-          return (
-            <View key={player.name}>
-              <Box
-                text={player.name}
-                function={() => {
-                  setPlayerEdit(player.name === playerEdit ? '' : player.name);
-                }}
-                type={0}
-              />
-              {player.name === playerEdit && (
-                <View style={{paddingHorizontal: 25, paddingVertical: 10}}>
-                  <TextInput
-                    defaultValue={player.name}
-                    placeholder="Name"
-                    style={styles.textInput}
-                  />
-                  <TextInput
-                    defaultValue={player.initiative.toString()}
-                    placeholder="Initiative"
-                    style={styles.textInput}
-                  />
-                  <Button
-                    title="Update Player"
-                    color={colours.grey}
-                    onPress={() => {
-                      // update player
+
+  public render() {
+    if (this.props.players.length == 0) {
+      this.props.getPlayers();
+    }
+
+    if (this.props.players) {
+      this.props.players.sort((p, q) => (q.name > p.name ? -1 : 1));
+      // Sort in alphabetical order
+    }
+    return (
+      <>
+        <Header title={this.props.route.name} />
+        <View style={styles.body}>
+          <KeyboardAwareScrollView>
+            {this.props.players.map((player: Player) => {
+              return (
+                <View key={player.name}>
+                  <Box
+                    text={player.name}
+                    function={() => {
+                      this.setState({
+                        playerEdit:
+                          player.name === this.state.playerEdit
+                            ? ''
+                            : player.name
+                      });
                     }}
+                    type={0}
                   />
+                  {player.name === this.state.playerEdit && (
+                    <View style={{paddingHorizontal: 25, paddingVertical: 10}}>
+                      <TextInput
+                        defaultValue={player.name}
+                        placeholder="Name"
+                        style={styles.textInput}
+                      />
+                      <TextInput
+                        defaultValue={player.initiative.toString()}
+                        placeholder="Initiative"
+                        style={styles.textInput}
+                      />
+                      <Button
+                        title="Update Player"
+                        color={colours.grey}
+                        onPress={() => {
+                          // update player
+                        }}
+                      />
+                    </View>
+                  )}
                 </View>
-              )}
-            </View>
-          );
-        })}
-      </View>
-    </>
-  );
+              );
+            })}
+          </KeyboardAwareScrollView>
+        </View>
+      </>
+    );
+  }
 }
 
 const mapStateToProps = (state: State): StateProps => ({

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PureComponent} from 'react';
 import {View, Text, Button, ScrollView, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 
@@ -29,93 +29,99 @@ interface DispatchProps {
 
 type Props = StateProps & DispatchProps & PageNavProps<'Initiative'>;
 
-function Initiative(props: Props) {
-  if (props.players.length == 0) {
-    props.getPlayers();
-  } else {
-    props.savePlayers(props.players);
+class Initiative extends PureComponent<Props> {
+  public constructor(props: Props) {
+    super(props);
   }
-  if (props.players) {
-    props.players.sort((p, q) => q.initiative - p.initiative);
-    // Sort by initiative in descending order
-  }
-  let line = true;
-  return (
-    <>
-      <Header title={props.route.name} />
-      <View style={styles.body}>
-        {props.players.map((player) => {
-          return (
-            <View key={player.name}>
-              {line && <View style={{borderTopWidth: 1, flex: 1}} />}
-              {(line = false)}
-              <View style={[styles.innerBody]}>
-                <View
-                  style={{
-                    flex: 3,
-                    paddingRight: 5,
-                    justifyContent: 'center'
-                  }}
-                >
-                  <Text
-                    adjustsFontSizeToFit
-                    numberOfLines={1}
-                    style={[styles.centre, {fontSize: 18}]}
-                  >
-                    {player.name}
-                  </Text>
-                </View>
-                <View style={{flex: 2}}>
-                  <Button
-                    title="Reaction"
-                    color={player.reaction ? colours.green : colours.red}
-                    onPress={() => {
-                      props.changeColour(player);
+
+  public render() {
+    if (this.props.players.length == 0) {
+      this.props.getPlayers();
+    } else {
+      this.props.savePlayers(this.props.players);
+    }
+    if (this.props.players) {
+      this.props.players.sort((p, q) => q.initiative - p.initiative);
+      // Sort by initiative in descending order
+    }
+    let line = true;
+    return (
+      <>
+        <Header title={this.props.route.name} />
+        <View style={styles.body}>
+          {this.props.players.map((player) => {
+            return (
+              <View key={player.name}>
+                {line && <View style={{borderTopWidth: 1, flex: 1}} />}
+                {(line = false)}
+                <View style={[styles.innerBody]}>
+                  <View
+                    style={{
+                      flex: 3,
+                      paddingRight: 5,
+                      justifyContent: 'center'
                     }}
-                  />
-                </View>
-                <View style={{justifyContent: 'center', paddingLeft: 5}}>
-                  <Text style={initiativeStyles.initiativeNumber}>
-                    {player.initiative}
-                  </Text>
+                  >
+                    <Text
+                      adjustsFontSizeToFit
+                      numberOfLines={1}
+                      style={[styles.centre, {fontSize: 18}]}
+                    >
+                      {player.name}
+                    </Text>
+                  </View>
+                  <View style={{flex: 2}}>
+                    <Button
+                      title="Reaction"
+                      color={player.reaction ? colours.green : colours.red}
+                      onPress={() => {
+                        this.props.changeColour(player);
+                      }}
+                    />
+                  </View>
+                  <View style={{justifyContent: 'center', paddingLeft: 5}}>
+                    <Text style={initiativeStyles.initiativeNumber}>
+                      {player.initiative}
+                    </Text>
+                  </View>
                 </View>
               </View>
-            </View>
-          );
-        })}
-        <View style={{padding: 3, paddingTop: 7}}>
-          <Button
-            // I would like this button to change navigation to a different screen
-            title={'Add player!'}
-            onPress={() => {
-              props.getMock();
-            }}
-          />
+            );
+          })}
+          <View style={{padding: 3, paddingTop: 7}}>
+            <Button
+              // I would like this button to change navigation to a different screen
+              title={'Add player!'}
+              onPress={() => {
+                this.props.getMock();
+              }}
+            />
+          </View>
+          <View style={{padding: 3, paddingTop: 7}}>
+            <Button
+              // This will be an edit button, same comments as remove button
+              title={"Edit Bizzie's Initiative"}
+              onPress={() => {
+                this.props.changeInitiative(
+                  {name: 'Bizzie', initiative: 20, reaction: true, edit: true},
+                  15
+                );
+              }}
+            />
+          </View>
+          <View style={{padding: 3, paddingTop: 7}}>
+            <Button
+              // Saves data to store
+              title={'Try Save'}
+              onPress={() => {
+                this.props.savePlayers(this.props.players);
+              }}
+            />
+          </View>
         </View>
-        <View style={{padding: 3, paddingTop: 7}}>
-          <Button
-            // This will be an edit button, same comments as remove button
-            title={"Edit Bizzie's Initiative"}
-            onPress={() => {
-              props.changeInitiative(
-                {name: 'Bizzie', initiative: 20, reaction: true, edit: true},
-                15
-              );
-            }}
-          />
-        </View>
-        <View style={{padding: 3, paddingTop: 7}}>
-          <Button
-            // Saves data to store
-            title={'Try Save'}
-            onPress={() => {
-              props.savePlayers(props.players);
-            }}
-          />
-        </View>
-      </View>
-    </>
-  );
+      </>
+    );
+  }
 }
 
 const initiativeStyles = StyleSheet.create({
