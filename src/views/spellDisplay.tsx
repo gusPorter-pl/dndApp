@@ -13,9 +13,13 @@ import spells from '../common/spells';
 import styles from '../common/styles';
 import BackButton from '../common/components/backButton';
 
+type LocalState = {
+  gifSelect: boolean;
+};
+
 type Props = SpellNavProps<'SpellDisplay'>;
 
-class SpellDisplay extends PureComponent<Props> {
+class SpellDisplay extends PureComponent<Props, LocalState> {
   public constructor(props: Props) {
     super(props);
     this.state = {
