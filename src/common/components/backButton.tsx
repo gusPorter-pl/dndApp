@@ -3,6 +3,7 @@ import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import colours from '../colours';
+import styles from '../styles';
 
 interface Props {
   function: () => void;
@@ -11,7 +12,7 @@ interface Props {
 export default function BackButton(props: Props) {
   return (
     <TouchableOpacity onPress={props.function} activeOpacity={1}>
-      <View style={backButtonStyles.container}>
+      <View style={[styles.horizontalItems, {backgroundColor: colours.black}]}>
         <Icon
           name="angle-left"
           size={30}
@@ -25,11 +26,6 @@ export default function BackButton(props: Props) {
 }
 
 const backButtonStyles = StyleSheet.create({
-  container: {
-    backgroundColor: colours.black,
-    alignItems: 'center',
-    flexDirection: 'row'
-  },
   icon: {
     paddingVertical: 11,
     paddingLeft: 20
