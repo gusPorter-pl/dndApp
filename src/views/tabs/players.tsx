@@ -3,7 +3,7 @@ import {View, Button, TextInput} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {connect} from 'react-redux';
 
-import PageNavProps from './navigation';
+import MainNavProps from '../navigation';
 import * as actions from '../../redux/actions';
 import {State} from '../../redux/reducer';
 import {StoreDispatch} from '../../redux/store';
@@ -29,11 +29,9 @@ interface DispatchProps {
   changeColour: (player: Player) => void;
   savePlayers: (players: Player[]) => void;
   getPlayers: () => void;
-
-  getMock: () => void;
 }
 
-type Props = StateProps & DispatchProps & PageNavProps<'Players'>;
+type Props = StateProps & DispatchProps & MainNavProps<'Tabs'>;
 
 class Players extends PureComponent<Props, LocalState> {
   public constructor(props: Props) {
@@ -68,6 +66,7 @@ class Players extends PureComponent<Props, LocalState> {
                 <View key={player.name}>
                   <Box
                     text={player.name}
+                    type={0}
                     function={() => {
                       this.setState({
                         playerEdit:
@@ -76,7 +75,6 @@ class Players extends PureComponent<Props, LocalState> {
                             : player.name
                       });
                     }}
-                    type={0}
                   />
                   {player.name === this.state.playerEdit && (
                     <View style={{paddingHorizontal: 25, paddingVertical: 10}}>
@@ -102,6 +100,15 @@ class Players extends PureComponent<Props, LocalState> {
                 </View>
               );
             })}
+            <View style={{paddingTop: 10, paddingHorizontal: 10}}>
+              <Box
+                text="Add PC or NPC"
+                type={0}
+                function={() => {
+                  this.props.navigation.navigate('PlayerAdd');
+                }}
+              />
+            </View>
           </KeyboardAwareScrollView>
         </View>
       </>
@@ -136,9 +143,6 @@ const mapDispatchToProps = (dispatch: StoreDispatch): DispatchProps => ({
   },
   savePlayers: (players: Player[]): void => {
     storage.savePlayers(players);
-  },
-  getMock: (): void => {
-    dispatch(actions.getMock());
   }
 });
 
