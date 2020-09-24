@@ -31,18 +31,8 @@ export default function Box(props: Props) {
       activeOpacity={0.7}
     >
       <View style={[styles.centre, props.style]}>
-        {props.type === 0 && (
-          <Image
-            source={box1}
-            style={{width: '100%', height: 60, resizeMode: 'stretch'}}
-          />
-        )}
-        {props.type === 1 && (
-          <Image
-            source={box2}
-            style={{width: '100%', height: 60, resizeMode: 'stretch'}}
-          />
-        )}
+        {props.type === 0 && <Image source={box1} style={boxStyles.size} />}
+        {props.type === 1 && <Image source={box2} style={boxStyles.size} />}
         <View style={boxStyles.overlapView}>
           <Text style={boxStyles.overlapText}>{props.text}</Text>
         </View>
@@ -52,6 +42,11 @@ export default function Box(props: Props) {
 }
 
 const boxStyles = StyleSheet.create({
+  size: {
+    width: '100%',
+    height: 60,
+    resizeMode: 'stretch'
+  },
   overlapView: {
     position: 'absolute',
     justifyContent: 'center',
