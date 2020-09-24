@@ -1,0 +1,104 @@
+{
+  // Place your snippets for typescriptreact here. Each snippet is defined under a snippet name and has a prefix, body and
+  // description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+  // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the
+  // same ids are connected.
+  // Example:
+  // "Print to console": {
+  // 	"prefix": "log",
+  // 	"body": [
+  // 		"console.log('$1');",
+  // 		"$2"
+  // 	],
+  // 	"description": "Log output to console"
+  // }
+  "React Page": {
+    "prefix": "re",
+    "body": [
+      "import React, {PureComponent, useState} from 'react';\r",
+      "import {View, Text, Image} from 'react-native';\r",
+      "import {connect} from 'react-redux';\r",
+      "\r",
+      // "import MainNavProps from '../navigation';\r",
+      "import * as actions from '../../redux/actions';\r",
+      "import {State} from '../../redux/reducer';\r",
+      "import {StoreDispatch} from '../../redux/store';\r",
+      "import * as stringFormat from '../../common/functions';\r",
+      "import spells from '../../common/spells';\r",
+      "import Box from '../../common/components/box';\r",
+      "import Header from '../../common/components/header';\r",
+      "\r",
+      "interface StateProps {\r",
+      "  ",
+      "}\r",
+      "\r",
+      "interface DispatchProps {\r",
+      "  ",
+      "}\r",
+      "\r",
+      "type Props = StateProps & DispatchProps // & MainNavProps<'Tabs'>;\r",
+      "\r",
+      "class $1 extends PureComponent<Props> {\r",
+      "  public constructor(props: Props) {\r",
+      "    super(props);\r",
+      "  }\r",
+      "\r",
+      "  // public componentDidMount() {\r",
+      "  //   this.props.navigation.addListener('blur', () => {\r",
+      "  //   });\r",
+      "  // }\r",
+      "\r",
+      "  public render() {\r",
+      "    return (\r",
+      "      <>\r",
+      "        <Header title={this.props.route.name} />\r",
+      "        <View style={styles.body}>\r",
+      "        </View>\r",
+      "      </>\r",
+      "    );\r",
+      "  }\r",
+      "}\r",
+      "\r",
+      "// const $1Styles = StyleSheet.create({\r",
+      "// });",
+      "\r",
+      "const mapStateToProps = (state: State): StateProps => ({\r",
+      "});\r",
+      "\r",
+      "const mapDispatchToProps = (dispatch: StoreDispatch): DispatchProps => ({\r",
+      "});\r",
+      "\r",
+      "export default connect(mapStateToProps, mapDispatchToProps)($1);\r",
+      ""
+    ],
+    "description": "Adds a react layout to a page"
+  },
+  "React Component": {
+    "prefix": "rc",
+    "body": [
+      "import React from 'react';\r",
+      "import {View, Text, StyleSheet} from 'react-native';\r",
+      "\r",
+      "import colours from '../colours';\r",
+      "import styles from '../styles';\r",
+      "\r",
+      "interface Props {\r",
+      "  title: string;\r",
+      "}\r",
+      "\r",
+      "export default function $1(props: Props) {\r",
+      "  return (\r",
+      "    <View style={}>\r",
+      "    </View>\r",
+      "  );\r",
+      "}\r",
+      "\r",
+      "const $1Styles = StyleSheet.create({\r",
+      "  container: {\r",
+      "  },\r",
+      "});\r",
+      ""
+    ],
+    "description": "Adds a react component to a page"
+  }
+}
