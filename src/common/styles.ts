@@ -13,6 +13,10 @@ const styles = StyleSheet.create({
     backgroundColor: colours.background,
     justifyContent: 'center'
   },
+  horizontalItems: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
   innerBody: {
     padding: 10,
     borderBottomWidth: 1,
