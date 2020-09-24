@@ -1,12 +1,14 @@
 Players Page: 
-  Have "Update Player" update the player in redux
+  Add edit page
+  Switch in edit and remove from update stuff
 
 Initiative Page:
   Add a begin initiative page that goes onto actual initiative page (hooked to stack navigator)
   Turn grids into boxes
 
 Spells Page:
-  Add rest of spells
+  Add rest of spells descriptions
+  Add spell info for spells with no gif
   Have search incorporate arrays to not limit results
   Add previously viewed spells in redux to display
 
