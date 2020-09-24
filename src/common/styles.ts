@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   textInput: {
+    backgroundColor: colours.white,
     marginVertical: 5,
     height: 40,
     paddingHorizontal: 10,
