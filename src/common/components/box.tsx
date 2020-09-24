@@ -24,7 +24,9 @@ export default function Box(props: Props) {
   return (
     <TouchableOpacity
       onPress={() => {
-        props.function();
+        if (props.function) {
+          props.function();
+        }
       }}
       activeOpacity={0.7}
     >
