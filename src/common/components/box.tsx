@@ -12,15 +12,17 @@ import styles from '../styles';
 
 const box1 = require('../../resources/boxes/other-empty.jpg');
 const box2 = require('../../resources/boxes/empty.jpg');
+const box3 = require('../../resources/boxes/small-empty.jpg');
 
 interface Props {
   text: string;
-  type: 0 | 1;
+  type: 0 | 1 | 2;
   function?: () => void;
-  style?: ViewStyle;
+  isRow?: boolean;
 }
 
 export default function Box(props: Props) {
+  console.info(props.text + ': ' + (props.type === 2).toString());
   return (
     <TouchableOpacity
       onPress={() => {
@@ -29,10 +31,12 @@ export default function Box(props: Props) {
         }
       }}
       activeOpacity={0.7}
+      style={props.type === 2 ? {width: 140} : {}}
     >
-      <View style={[styles.centre, props.style]}>
+      <View style={[styles.centre]}>
         {props.type === 0 && <Image source={box1} style={boxStyles.size} />}
         {props.type === 1 && <Image source={box2} style={boxStyles.size} />}
+        {props.type === 2 && <Image source={box3} style={boxStyles.size} />}
         <View style={boxStyles.overlapView}>
           <Text style={boxStyles.overlapText}>{props.text}</Text>
         </View>
