@@ -23,8 +23,6 @@ interface DispatchProps {
   changeColour: (player: Player) => void;
   savePlayers: (players: Player[]) => void;
   getPlayers: () => void;
-
-  getMock: () => void;
 }
 
 type Props = StateProps & DispatchProps & PageNavProps<'Initiative'>;
@@ -90,27 +88,6 @@ class Initiative extends PureComponent<Props> {
           })}
           <View style={{padding: 3, paddingTop: 7}}>
             <Button
-              // I would like this button to change navigation to a different screen
-              title={'Add player!'}
-              onPress={() => {
-                this.props.getMock();
-              }}
-            />
-          </View>
-          <View style={{padding: 3, paddingTop: 7}}>
-            <Button
-              // This will be an edit button, same comments as remove button
-              title={"Edit Bizzie's Initiative"}
-              onPress={() => {
-                this.props.changeInitiative(
-                  {name: 'Bizzie', initiative: 20, reaction: true, edit: true},
-                  15
-                );
-              }}
-            />
-          </View>
-          <View style={{padding: 3, paddingTop: 7}}>
-            <Button
               // Saves data to store
               title={'Try Save'}
               onPress={() => {
@@ -163,9 +140,6 @@ const mapDispatchToProps = (dispatch: StoreDispatch): DispatchProps => ({
   },
   savePlayers: (players: Player[]) => {
     storage.savePlayers(players);
-  },
-  getMock: () => {
-    dispatch(actions.getMock());
   }
 });
 

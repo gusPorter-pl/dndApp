@@ -46,17 +46,6 @@ export default function reducer(
         ...state,
         players: action.players
       };
-    case 'getMock':
-      return {
-        ...state,
-        players: [
-          {name: 'Bizzie', initiative: 20, reaction: true, edit: false},
-          {name: 'Xaylor', initiative: 14, reaction: true, edit: false},
-          {name: 'Salrakir', initiative: 2, reaction: true, edit: false},
-          {name: 'Mrtlvnjr', initiative: 8, reaction: true, edit: false},
-          {name: 'Pop Princess', initiative: 17, reaction: true, edit: false}
-        ]
-      };
     case 'changeSpellNames':
       return {
         ...state,

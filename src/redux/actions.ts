@@ -5,8 +5,7 @@ export type ActionTypes =
   | {type: 'removePlayer'; name: string}
   | {type: 'editPlayer'; player: Player}
   | {type: 'loadPlayers'; players: Player[]}
-  | {type: 'changeSpellNames'; searchText: string}
-  | {type: 'getMock'};
+  | {type: 'changeSpellNames'; searchText: string};
 
 export const addPlayer = (player: Player) => {
   const action: ActionTypes = {
@@ -44,13 +43,6 @@ export const changeSpellNames = (searchText: string) => {
   const action: ActionTypes = {
     type: 'changeSpellNames',
     searchText
-  };
-  return action;
-};
-
-export const getMock = () => {
-  const action: ActionTypes = {
-    type: 'getMock'
   };
   return action;
 };
