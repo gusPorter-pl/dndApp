@@ -1,12 +1,7 @@
-import React, {PureComponent, useState, useCallback} from 'react';
+import React, {PureComponent} from 'react';
 import {View, Button, TextInput} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {connect} from 'react-redux';
-import {
-  Descriptor,
-  NavigationState,
-  useFocusEffect
-} from '@react-navigation/native';
 
 import PageNavProps from './navigation';
 import * as actions from '../../redux/actions';
