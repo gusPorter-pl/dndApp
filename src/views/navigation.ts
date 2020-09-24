@@ -6,6 +6,7 @@ import {Spell} from '../common/types';
 export type MainParamList = {
   Tabs: undefined;
   SpellDisplay: {spellName: string; spell: Spell};
+  PlayerAdd: undefined;
 };
 
 type MainNavProps<key extends keyof MainParamList> = {
