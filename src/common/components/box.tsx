@@ -1,7 +1,16 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, Image, StyleSheet} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  StyleSheet,
+  Button
+} from 'react-native';
+import colours from '../colours';
 
 import styles from '../styles';
+import {Player} from '../types';
 
 const box1 = require('../../resources/boxes/other-empty.jpg');
 const box2 = require('../../resources/boxes/empty.jpg');
@@ -12,6 +21,8 @@ interface Props {
   type: 0 | 1 | 2;
   function?: () => void;
   isRow?: boolean;
+  player?: Player;
+  reactionChange?: () => void;
 }
 
 export default function Box(props: Props) {
@@ -51,6 +62,7 @@ const boxStyles = StyleSheet.create({
   },
   overlapView: {
     position: 'absolute',
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center'
   },
