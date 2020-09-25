@@ -30,6 +30,12 @@ class Initiative extends PureComponent<Props, LocalState> {
     };
   }
 
+  // public componentDidMount() {
+  //   this.props.navigation.addListener('blur', () => {
+  //     this.setState({addedPlayerNames: []});
+  //   });
+  // }
+
   public render() {
     if (this.props.players) {
       this.props.players.sort((p, q) => q.initiative - p.initiative);
@@ -107,7 +113,7 @@ class Initiative extends PureComponent<Props, LocalState> {
           {addedPlayers.length > 0 && (
             <View style={{paddingTop: 10, paddingHorizontal: 10}}>
               <Box
-                text="Start Initiative"
+                text="Set Up Initiative"
                 type={1}
                 function={() => {
                   this.props.navigation.navigate('InitiativeOrder', {
