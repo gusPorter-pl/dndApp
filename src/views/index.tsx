@@ -1,7 +1,6 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import InitiativeOrder from './initiativeOrder';
 import PlayerAddEdit from './playerAddEdit';
 import SpellDisplay from './spellDisplay';
 import TabScreen from './tabs';
@@ -15,7 +14,6 @@ function StackScreen() {
       <Stack.Screen name="Tabs" component={TabScreen} />
       <Stack.Screen name="SpellDisplay" component={SpellDisplay} />
       <Stack.Screen name="PlayerAddEdit" component={PlayerAddEdit} />
-      <Stack.Screen name="InitiativeOrder" component={InitiativeOrder} />
     </Stack.Navigator>
   );
 }
