@@ -2,8 +2,7 @@ Players Page:
   Done! (for the time being)
 
 Initiative Page:
-  Add a begin initiative page that goes onto actual initiative page (hooked to stack navigator)
-  Turn grids into boxes
+  Done! (for the time being)
 
 Spells Page:
   Add rest of spells descriptions
