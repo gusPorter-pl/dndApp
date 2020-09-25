@@ -2,57 +2,83 @@ import React, {PureComponent} from 'react';
 import {View, Text, Button, ScrollView, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 
-import PageNavProps from './navigation';
-import * as actions from '../../redux/actions';
+import MainNavProps from '../navigation';
 import {State} from '../../redux/reducer';
 import {StoreDispatch} from '../../redux/store';
-import * as storage from '../../services/storage';
-import colours from '../../common/colours';
 import styles from '../../common/styles';
 import {Player} from '../../common/types';
+import Box from '../../common/components/box';
 import Header from '../../common/components/header';
+
+interface LocalState {
+  addedPlayerNames: string[];
+}
 
 interface StateProps {
   players: Player[];
 }
 
-interface DispatchProps {
-  addPlayer: (player: Player) => void;
-  removePlayer: (name: string) => void; // Change this from string -> Player
-  changeInitiative: (player: Player, initiative: number) => void; // Make this edit player
-  changeColour: (player: Player) => void;
-  savePlayers: (players: Player[]) => void;
-  getPlayers: () => void;
-}
+interface DispatchProps {}
 
-type Props = StateProps & DispatchProps & PageNavProps<'Initiative'>;
+type Props = StateProps & DispatchProps & MainNavProps<'Tabs'>;
 
-class Initiative extends PureComponent<Props> {
+class Initiative extends PureComponent<Props, LocalState> {
   public constructor(props: Props) {
     super(props);
+    this.state = {
+      addedPlayerNames: []
+    };
   }
 
   public render() {
-    if (this.props.players.length == 0) {
-      this.props.getPlayers();
-    } else {
-      this.props.savePlayers(this.props.players);
-    }
     if (this.props.players) {
       this.props.players.sort((p, q) => q.initiative - p.initiative);
       // Sort by initiative in descending order
     }
-    let line = true;
+
+    const addedPlayers = this.props.players.filter((player) => {
+      for (const addedPlayerName of this.state.addedPlayerNames) {
+        if (addedPlayerName === player.name) {
+          return true;
+        }
+      }
+      return false;
+    });
+    const notAddedPlayers = this.props.players.filter((player) => {
+      for (const addedPlayerName of this.state.addedPlayerNames) {
+        if (addedPlayerName === player.name) {
+          return false;
+        }
+      }
+      return true;
+    });
+
     return (
       <>
         <Header title={this.props.route.name} />
         <View style={styles.body}>
-          {this.props.players.map((player) => {
+          {addedPlayers.length > 0 && (
+            <View style={{paddingVertical: 5}}>
+              <Text style={{textAlign: 'center', fontSize: 24}}>
+                Added Players
+              </Text>
+            </View>
+          )}
+          {addedPlayers.map((player) => {
             return (
               <View key={player.name}>
-                {line && <View style={{borderTopWidth: 1, flex: 1}} />}
-                {(line = false)}
-                <View style={[styles.innerBody]}>
+                <Box
+                  text={player.name}
+                  type={0}
+                  function={() => {
+                    this.setState({
+                      addedPlayerNames: this.state.addedPlayerNames.filter(
+                        (playerName) => playerName !== player.name
+                      )
+                    });
+                  }}
+                />
+                {/* <View style={}>
                   <View
                     style={{
                       flex: 3,
@@ -60,21 +86,13 @@ class Initiative extends PureComponent<Props> {
                       justifyContent: 'center'
                     }}
                   >
-                    <Text
-                      adjustsFontSizeToFit
-                      numberOfLines={1}
-                      style={[styles.centre, {fontSize: 18}]}
-                    >
-                      {player.name}
-                    </Text>
+                    
                   </View>
                   <View style={{flex: 2}}>
                     <Button
                       title="Reaction"
                       color={player.reaction ? colours.green : colours.red}
-                      onPress={() => {
-                        this.props.changeColour(player);
-                      }}
+                      onPress={() => {}}
                     />
                   </View>
                   <View style={{justifyContent: 'center', paddingLeft: 5}}>
@@ -82,19 +100,48 @@ class Initiative extends PureComponent<Props> {
                       {player.initiative}
                     </Text>
                   </View>
-                </View>
+                </View> */}
               </View>
             );
           })}
-          <View style={{padding: 3, paddingTop: 7}}>
-            <Button
-              // Saves data to store
-              title={'Try Save'}
-              onPress={() => {
-                this.props.savePlayers(this.props.players);
-              }}
-            />
-          </View>
+          {addedPlayers.length > 0 && (
+            <View style={{paddingTop: 10, paddingHorizontal: 10}}>
+              <Box
+                text="Start Initiative"
+                type={1}
+                function={() => {
+                  this.props.navigation.navigate('InitiativeOrder', {
+                    players: addedPlayers
+                  });
+                }}
+              />
+            </View>
+          )}
+          {notAddedPlayers.length > 0 && (
+            <View style={{paddingTop: 20, paddingBottom: 5}}>
+              <Text style={{textAlign: 'center', fontSize: 24}}>
+                Not Added Players
+              </Text>
+            </View>
+          )}
+          {notAddedPlayers.map((player) => {
+            return (
+              <View key={player.name}>
+                <Box
+                  text={player.name}
+                  type={0}
+                  function={() => {
+                    this.setState({
+                      addedPlayerNames: [
+                        ...this.state.addedPlayerNames,
+                        player.name
+                      ]
+                    });
+                  }}
+                />
+              </View>
+            );
+          })}
         </View>
       </>
     );
@@ -114,33 +161,6 @@ const mapStateToProps = (state: State): StateProps => ({
   players: state.players
 });
 
-const mapDispatchToProps = (dispatch: StoreDispatch): DispatchProps => ({
-  addPlayer: (player: Player) => {
-    dispatch(actions.addPlayer(player));
-  },
-  removePlayer: (name: string) => {
-    dispatch(actions.removePlayer(name));
-  },
-  changeColour: (player: Player) => {
-    const updatedPlayer = {...player, reaction: !player.reaction};
-    dispatch(actions.editPlayer(updatedPlayer));
-  },
-  changeInitiative: (player: Player, initiative: number) => {
-    const updatedPlayer = {...player, initiative};
-    dispatch(actions.editPlayer(updatedPlayer));
-  },
-  getPlayers: async () => {
-    const promise = storage.getPlayers();
-    promise.then((players) => {
-      if (players.length == 0) {
-        return;
-      }
-      dispatch(actions.loadPlayers(players));
-    });
-  },
-  savePlayers: (players: Player[]) => {
-    storage.savePlayers(players);
-  }
-});
+const mapDispatchToProps = (dispatch: StoreDispatch): DispatchProps => ({});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Initiative);

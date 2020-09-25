@@ -7,6 +7,7 @@ export type MainParamList = {
   Tabs: undefined;
   SpellDisplay: {spellName: string; spell: Spell};
   PlayerAddEdit: {type: string; player?: Player};
+  InitiativeOrder: {players: Player[]};
 };
 
 type MainNavProps<key extends keyof MainParamList> = {
