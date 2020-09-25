@@ -29,7 +29,7 @@ export default function Box(props: Props) {
           props.function();
         }
       }}
-      activeOpacity={0.7}
+      activeOpacity={props.function ? 0.7 : 1}
       style={props.type === 2 ? {width: 140} : {}}
     >
       <View style={[styles.centre]}>
