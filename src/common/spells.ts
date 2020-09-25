@@ -865,6 +865,1186 @@ const spells = {
     gif: true,
     image: require('../resources/spell-gifs/2/zone-of-truth.gif'),
     description: require('../resources/spell-gifs/2/zone-of-truth-desc.jpg')
+  },
+  'animate-dead': {
+    level: 3,
+    gif: true,
+    image: require('../resources/spell-gifs/3/animate-dead.gif'),
+    description: require('../resources/spell-gifs/3/animate-dead-desc.jpg')
+  },
+  'aura-of-vitality': {
+    level: 3,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'beacon-of-hope': {
+    level: 3,
+    gif: true,
+    image: require('../resources/spell-gifs/3/beacon-of-hope.gif'),
+    description: require('../resources/spell-gifs/3/beacon-of-hope-desc.jpg')
+  },
+  'bestow-curse': {
+    level: 3,
+    gif: true,
+    image: require('../resources/spell-gifs/3/bestow-curse.gif'),
+    description: require('../resources/spell-gifs/3/bestow-curse-desc.jpg')
+  },
+  'blinding-smite': {
+    level: 3,
+    gif: false,
+    'if-not-gif': {}
+  },
+  blink: {
+    level: 3,
+    gif: true,
+    image: require('../resources/spell-gifs/3/blink.gif'),
+    description: require('../resources/spell-gifs/3/blink-desc.jpg')
+  },
+  'call-lightning': {
+    level: 3,
+    gif: true,
+    image: require('../resources/spell-gifs/3/call-lightning.gif'),
+    description: require('../resources/spell-gifs/3/call-lightning-desc.jpg')
+  },
+  clairvoyance: {
+    level: 3,
+    gif: true,
+    image: require('../resources/spell-gifs/3/clairvoyance.gif'),
+    description: require('../resources/spell-gifs/3/clairvoyance-desc.jpg')
+  },
+  'conjure-animals': {
+    level: 3,
+    gif: true,
+    image: require('../resources/spell-gifs/3/conjure-animals.gif'),
+    description: require('../resources/spell-gifs/3/conjure-animals-desc.jpg')
+  },
+  'conjure-barrage': {
+    level: 3,
+    gif: false,
+    'if-not-gif': {}
+  },
+  counterspell: {
+    level: 3,
+    gif: true,
+    image: require('../resources/spell-gifs/3/counterspell.gif'),
+    description: require('../resources/spell-gifs/3/counterspell-desc.jpg')
+  },
+  'create-food-and-water': {
+    level: 3,
+    gif: true,
+    image: require('../resources/spell-gifs/3/create-food-and-water.gif'),
+    description: require('../resources/spell-gifs/3/create-food-and-water-desc.jpg')
+  },
+  "crusader's-mantle": {
+    level: 3,
+    gif: false,
+    'if-not-gif': {}
+  },
+  daylight: {
+    level: 3,
+    gif: true,
+    image: require('../resources/spell-gifs/3/daylight.gif'),
+    description: require('../resources/spell-gifs/3/daylight-desc.jpg')
+  },
+  'dispel-magic': {
+    level: 3,
+    gif: true,
+    image: require('../resources/spell-gifs/3/dispell-magic.gif'),
+    description: require('../resources/spell-gifs/3/dispell-magic-desc.jpg')
+  },
+  'elemental-weapon': {
+    level: 3,
+    gif: false,
+    'if-not-gif': {}
+  },
+  fear: {
+    level: 3,
+    gif: true,
+    image: require('../resources/spell-gifs/3/fear.gif'),
+    description: require('../resources/spell-gifs/3/fear-desc.jpg')
+  },
+  'feign-death': {
+    level: 3,
+    gif: false,
+    'if-not-gif': {}
+  },
+  fireball: {
+    level: 3,
+    gif: true,
+    image: require('../resources/spell-gifs/3/fireball.gif'),
+    description: require('../resources/spell-gifs/3/fireball-desc.jpg')
+  },
+  fly: {
+    level: 3,
+    gif: true,
+    image: require('../resources/spell-gifs/3/fly.gif'),
+    description: require('../resources/spell-gifs/3/fly-desc.jpg')
+  },
+  'gaseous-form': {
+    level: 3,
+    gif: true,
+    image: require('../resources/spell-gifs/3/gaseous-form.gif'),
+    description: require('../resources/spell-gifs/3/gaseous-form-desc.jpg')
+  },
+  'glyph-of-warding': {
+    level: 3,
+    gif: true,
+    image: require('../resources/spell-gifs/3/glyph-of-warding.gif'),
+    description: require('../resources/spell-gifs/3/glyph-of-warding-desc.jpg')
+  },
+  haste: {
+    level: 3,
+    gif: true,
+    image: require('../resources/spell-gifs/3/haste.gif'),
+    description: require('../resources/spell-gifs/3/haste-desc.jpg')
+  },
+  'hunger-of-hadar': {
+    level: 3,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'hypnotic-pattern': {
+    level: 3,
+    gif: true,
+    image: require('../resources/spell-gifs/3/hypnotic-pattern.gif'),
+    description: require('../resources/spell-gifs/3/hypnotic-pattern-desc.jpg')
+  },
+  "leomund's-tiny-hut": {
+    level: 3,
+    gif: true,
+    image: require("../resources/spell-gifs/3/leomund's-tiny-hut.gif"),
+    description: require("../resources/spell-gifs/3/leomund's-tiny-hut-desc.jpg")
+  },
+  'lightning-arrow': {
+    level: 3,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'lightning-bolt': {
+    level: 3,
+    gif: true,
+    image: require('../resources/spell-gifs/3/lightning-bolt.gif'),
+    description: require('../resources/spell-gifs/3/lightning-bolt-desc.jpg')
+  },
+  'magic-circle': {
+    level: 3,
+    gif: true,
+    image: require('../resources/spell-gifs/3/magic-circle.gif'),
+    description: require('../resources/spell-gifs/3/magic-circle-desc.jpg')
+  },
+  'major-image': {
+    level: 3,
+    gif: true,
+    image: require('../resources/spell-gifs/3/major-image.gif'),
+    description: require('../resources/spell-gifs/3/major-image-desc.jpg')
+  },
+  'mass-healing-word': {
+    level: 3,
+    gif: true,
+    image: require('../resources/spell-gifs/3/mass-healing-word.gif'),
+    description: require('../resources/spell-gifs/3/mass-healing-word-desc.jpg')
+  },
+  'meld-into-stone': {
+    level: 3,
+    gif: true,
+    image: require('../resources/spell-gifs/3/meld-into-stone.gif'),
+    description: require('../resources/spell-gifs/3/meld-into-stone-desc.jpg')
+  },
+  nondetection: {
+    level: 3,
+    gif: true,
+    image: require('../resources/spell-gifs/3/nondetection.gif'),
+    description: require('../resources/spell-gifs/3/nondetection-desc.jpg')
+  },
+  'phantom-steed': {
+    level: 3,
+    gif: true,
+    image: require('../resources/spell-gifs/3/phantom-steed.gif'),
+    description: require('../resources/spell-gifs/3/phantom-steed-desc.jpg')
+  },
+  'plant-growth': {
+    level: 3,
+    gif: true,
+    image: require('../resources/spell-gifs/3/plant-growth.gif'),
+    description: require('../resources/spell-gifs/3/plant-growth-desc.jpg')
+  },
+  'protection-from-energy': {
+    level: 3,
+    gif: true,
+    image: require('../resources/spell-gifs/3/protection-from-energy.gif'),
+    description: require('../resources/spell-gifs/3/protection-from-energy-desc.jpg')
+  },
+  'remove-curse': {
+    level: 3,
+    gif: true,
+    image: require('../resources/spell-gifs/3/remove-curse.gif'),
+    description: require('../resources/spell-gifs/3/remove-curse-desc.jpg')
+  },
+  revivify: {
+    level: 3,
+    gif: true,
+    image: require('../resources/spell-gifs/3/revivify.gif'),
+    description: require('../resources/spell-gifs/3/revivify-desc.jpg')
+  },
+  sending: {
+    level: 3,
+    gif: true,
+    image: require('../resources/spell-gifs/3/sending.gif'),
+    description: require('../resources/spell-gifs/3/sending-desc.jpg')
+  },
+  'sleet-storm': {
+    level: 3,
+    gif: true,
+    image: require('../resources/spell-gifs/3/sleet-storm.gif'),
+    description: require('../resources/spell-gifs/3/sleet-storm-desc.jpg')
+  },
+  slow: {
+    level: 3,
+    gif: true,
+    image: require('../resources/spell-gifs/3/slow.gif'),
+    description: require('../resources/spell-gifs/3/slow-desc.jpg')
+  },
+  'speak-with-dead': {
+    level: 3,
+    gif: true,
+    image: require('../resources/spell-gifs/3/speak-with-dead.gif'),
+    description: require('../resources/spell-gifs/3/speak-with-dead-desc.jpg')
+  },
+  'speak-with-plants': {
+    level: 3,
+    gif: true,
+    image: require('../resources/spell-gifs/3/speak-with-plants.gif'),
+    description: require('../resources/spell-gifs/3/speak-with-plants-desc.jpg')
+  },
+  'spirit-guardians': {
+    level: 3,
+    gif: true,
+    image: require('../resources/spell-gifs/3/spirit-guardians.gif'),
+    description: require('../resources/spell-gifs/3/spirit-guardians-desc.jpg')
+  },
+  'stinking-cloud': {
+    level: 3,
+    gif: true,
+    image: require('../resources/spell-gifs/3/stinking-cloud.gif'),
+    description: require('../resources/spell-gifs/3/stinking-cloud-desc.jpg')
+  },
+  tongues: {
+    level: 3,
+    gif: true,
+    image: require('../resources/spell-gifs/3/tongues.gif'),
+    description: require('../resources/spell-gifs/3/tongues-desc.jpg')
+  },
+  'vampiric-touch': {
+    level: 3,
+    gif: true,
+    image: require('../resources/spell-gifs/3/vampiric-touch.gif'),
+    description: require('../resources/spell-gifs/3/vampiric-touch-desc.jpg')
+  },
+  'water-breathing': {
+    level: 3,
+    gif: true,
+    image: require('../resources/spell-gifs/3/water-breathing.gif'),
+    description: require('../resources/spell-gifs/3/water-breathing-desc.jpg')
+  },
+  'water-walk': {
+    level: 3,
+    gif: true,
+    image: require('../resources/spell-gifs/3/water-walk.gif'),
+    description: require('../resources/spell-gifs/3/water-walk-desc.jpg')
+  },
+  'wind-wall': {
+    level: 3,
+    gif: true,
+    image: require('../resources/spell-gifs/3/wind-wall.gif'),
+    description: require('../resources/spell-gifs/3/wind-wall-desc.jpg')
+  },
+  'arcane-eye': {
+    level: 4,
+    gif: true,
+    image: require('../resources/spell-gifs/4/arcane-eye.gif'),
+    description: require('../resources/spell-gifs/4/arcane-eye-desc.jpg')
+  },
+  'aura-of-life': {
+    level: 4,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'aura-of-purity': {
+    level: 4,
+    gif: false,
+    'if-not-gif': {}
+  },
+  banishment: {
+    level: 4,
+    gif: true,
+    image: require('../resources/spell-gifs/4/banishment.gif'),
+    description: require('../resources/spell-gifs/4/banishment-desc.jpg')
+  },
+  blight: {
+    level: 4,
+    gif: true,
+    image: require('../resources/spell-gifs/4/blight.gif'),
+    description: require('../resources/spell-gifs/4/blight-desc.jpg')
+  },
+  compulsion: {
+    level: 4,
+    gif: true,
+    image: require('../resources/spell-gifs/4/compulsion.gif'),
+    description: require('../resources/spell-gifs/4/compulsion-desc.jpg')
+  },
+  confusion: {
+    level: 4,
+    gif: true,
+    image: require('../resources/spell-gifs/4/confusion.gif'),
+    description: require('../resources/spell-gifs/4/confusion-desc.jpg')
+  },
+  'conjure-minor-elementals': {
+    level: 4,
+    gif: true,
+    image: require('../resources/spell-gifs/4/conjure-minor-elementals.gif'),
+    description: require('../resources/spell-gifs/4/conjure-minor-elementals-desc.jpg')
+  },
+  'conjure-woodland-beings': {
+    level: 4,
+    gif: true,
+    image: require('../resources/spell-gifs/4/conjure-woodland-beings.gif'),
+    description: require('../resources/spell-gifs/4/conjure-woodland-beings-desc.jpg')
+  },
+  'control-water': {
+    level: 4,
+    gif: true,
+    image: require('../resources/spell-gifs/4/control-water.gif'),
+    description: require('../resources/spell-gifs/4/control-water-desc.jpg')
+  },
+  'death-ward': {
+    level: 4,
+    gif: true,
+    image: require('../resources/spell-gifs/4/death-ward.gif'),
+    description: require('../resources/spell-gifs/4/death-ward-desc.jpg')
+  },
+  'dimension-door': {
+    level: 4,
+    gif: true,
+    image: require('../resources/spell-gifs/4/dimension-door.gif'),
+    description: require('../resources/spell-gifs/4/dimension-door-desc.jpg')
+  },
+  divination: {
+    level: 4,
+    gif: true,
+    image: require('../resources/spell-gifs/4/divination.gif'),
+    description: require('../resources/spell-gifs/4/divination-desc.jpg')
+  },
+  'dominate-beast': {
+    level: 4,
+    gif: true,
+    image: require('../resources/spell-gifs/4/dominate-beast.gif'),
+    description: require('../resources/spell-gifs/4/dominate-beast-desc.jpg')
+  },
+  "evard's-black-tenticles": {
+    level: 4,
+    gif: true,
+    image: require("../resources/spell-gifs/4/evard's-black-tenticles.gif"),
+    description: require("../resources/spell-gifs/4/evard's-black-tenticles-desc.jpg")
+  },
+  fabricate: {
+    level: 4,
+    gif: true,
+    image: require('../resources/spell-gifs/4/fabricate.gif'),
+    description: require('../resources/spell-gifs/4/fabricate-desc.jpg')
+  },
+  'fire-shield': {
+    level: 4,
+    gif: true,
+    image: require('../resources/spell-gifs/4/fire-shield.gif'),
+    description: require('../resources/spell-gifs/4/fire-shield-desc.jpg')
+  },
+  'freedom-of-movement': {
+    level: 4,
+    gif: true,
+    image: require('../resources/spell-gifs/4/freedom-of-movement.gif'),
+    description: require('../resources/spell-gifs/4/freedom-of-movement-desc.jpg')
+  },
+  'giant-insect': {
+    level: 4,
+    gif: true,
+    image: require('../resources/spell-gifs/4/giant-insect.gif'),
+    description: require('../resources/spell-gifs/4/giant-insect-desc.jpg')
+  },
+  'grasping-vine': {
+    level: 4,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'greater-invisibility': {
+    level: 4,
+    gif: true,
+    image: require('../resources/spell-gifs/4/greater-invisibility.gif'),
+    description: require('../resources/spell-gifs/4/greater-invisibility-desc.jpg')
+  },
+  'guardian-of-faith': {
+    level: 4,
+    gif: true,
+    image: require('../resources/spell-gifs/4/guardian-of-faith.gif'),
+    description: require('../resources/spell-gifs/4/guardian-of-faith-desc.jpg')
+  },
+  'hallucinatory-terrain': {
+    level: 4,
+    gif: true,
+    image: require('../resources/spell-gifs/4/hallucinatory-terrain.gif'),
+    description: require('../resources/spell-gifs/4/hallucinatory-terrain-desc.jpg')
+  },
+  'ice-storm': {
+    level: 4,
+    gif: true,
+    image: require('../resources/spell-gifs/4/ice-storm.gif'),
+    description: require('../resources/spell-gifs/4/ice-storm-desc.jpg')
+  },
+  "leomund's-secret-chest": {
+    level: 4,
+    gif: true,
+    image: require("../resources/spell-gifs/4/leomund's-secret-chest.gif"),
+    description: require("../resources/spell-gifs/4/leomund's-secret-chest-desc.jpg")
+  },
+  'locate-creature': {
+    level: 4,
+    gif: true,
+    image: require('../resources/spell-gifs/4/locate-creature.gif'),
+    description: require('../resources/spell-gifs/4/locate-creature-desc.jpg')
+  },
+  "mordenkainen's-faithful-hound": {
+    level: 4,
+    gif: true,
+    image: require("../resources/spell-gifs/4/mordenkainen's-faithful-hound.gif"),
+    description: require("../resources/spell-gifs/4/mordenkainen's-faithful-hound-desc.jpg")
+  },
+  "mordenkainen's-private-sanctum": {
+    level: 4,
+    gif: true,
+    image: require("../resources/spell-gifs/4/mordenkainen's-private-sanctum.gif"),
+    description: require("../resources/spell-gifs/4/mordenkainen's-private-sanctum-desc.jpg")
+  },
+  "otiluke's-resilient-sphere": {
+    level: 4,
+    gif: true,
+    image: require("../resources/spell-gifs/4/otiluke's-resilient-sphere.gif"),
+    description: require("../resources/spell-gifs/4/otiluke's-resilient-sphere-desc.jpg")
+  },
+  'phantasmal-killer': {
+    level: 4,
+    gif: true,
+    image: require('../resources/spell-gifs/4/phantasmal-killer.gif'),
+    description: require('../resources/spell-gifs/4/phantasmal-killer-desc.jpg')
+  },
+  polymorph: {
+    level: 4,
+    gif: true,
+    image: require('../resources/spell-gifs/4/polymorph.gif'),
+    description: require('../resources/spell-gifs/4/polymorph-desc.jpg')
+  },
+  'staggering-smite': {
+    level: 4,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'stone-shape': {
+    level: 4,
+    gif: true,
+    image: require('../resources/spell-gifs/4/stone-shape.gif'),
+    description: require('../resources/spell-gifs/4/stone-shape-desc.jpg')
+  },
+  stoneskin: {
+    level: 4,
+    gif: true,
+    image: require('../resources/spell-gifs/4/stoneskin.gif'),
+    description: require('../resources/spell-gifs/4/stoneskin-desc.jpg')
+  },
+  'wall-of-fire': {
+    level: 4,
+    gif: true,
+    image: require('../resources/spell-gifs/4/wall-of-fire.gif'),
+    description: require('../resources/spell-gifs/4/wall-of-fire-desc.jpg')
+  },
+  'animate-object': {
+    level: 5,
+    gif: true,
+    image: require('../resources/spell-gifs/5/animate-object.gif'),
+    description: require('../resources/spell-gifs/5/animate-object-desc.jpg')
+  },
+  'antilife-shell': {
+    level: 5,
+    gif: true,
+    image: require('../resources/spell-gifs/5/antilife-shell.gif'),
+    description: require('../resources/spell-gifs/5/antilife-shell-desc.jpg')
+  },
+  awaken: {
+    level: 5,
+    gif: true,
+    image: require('../resources/spell-gifs/5/awaken.gif'),
+    description: require('../resources/spell-gifs/5/awaken-desc.jpg')
+  },
+  'banishing-smite': {
+    level: 5,
+    gif: false,
+    'if-not-gif': {}
+  },
+  "bigby's-hand": {
+    level: 5,
+    gif: true,
+    image: require("../resources/spell-gifs/5/bigby's-hand.gif"),
+    description: require("../resources/spell-gifs/5/bigby's-hand-desc.jpg")
+  },
+  'circle-of-power': {
+    level: 5,
+    gif: false,
+    'if-not-gif': {}
+  },
+  cloudkill: {
+    level: 5,
+    gif: true,
+    image: require('../resources/spell-gifs/5/cloudkill.gif'),
+    description: require('../resources/spell-gifs/5/cloudkill-desc.jpg')
+  },
+  commune: {
+    level: 5,
+    gif: true,
+    image: require('../resources/spell-gifs/5/commune.gif'),
+    description: require('../resources/spell-gifs/5/commune-desc.jpg')
+  },
+  'commune-with-nature': {
+    level: 5,
+    gif: true,
+    image: require('../resources/spell-gifs/5/commune-with-nature.gif'),
+    description: require('../resources/spell-gifs/5/commune-with-nature-desc.jpg')
+  },
+  'cone-of-cold': {
+    level: 5,
+    gif: true,
+    image: require('../resources/spell-gifs/5/cone-of-cold.gif'),
+    description: require('../resources/spell-gifs/5/cone-of-cold-desc.jpg')
+  },
+  'conjure-elemental': {
+    level: 5,
+    gif: true,
+    image: require('../resources/spell-gifs/5/conjure-elemental.gif'),
+    description: require('../resources/spell-gifs/5/conjure-elemental-desc.jpg')
+  },
+  'conjure-volley': {
+    level: 5,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'contact-other-plane': {
+    level: 5,
+    gif: true,
+    image: require('../resources/spell-gifs/5/contact-other-plane.gif'),
+    description: require('../resources/spell-gifs/5/contact-other-plane-desc.jpg')
+  },
+  contagion: {
+    level: 5,
+    gif: true,
+    image: require('../resources/spell-gifs/5/contagion.gif'),
+    description: require('../resources/spell-gifs/5/contagion-desc.jpg')
+  },
+  creation: {
+    level: 5,
+    gif: true,
+    image: require('../resources/spell-gifs/5/creation.gif'),
+    description: require('../resources/spell-gifs/5/creation-desc.jpg')
+  },
+  'destructive-wave': {
+    level: 5,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'dispel-evil-and-good': {
+    level: 5,
+    gif: true,
+    image: require('../resources/spell-gifs/5/dispel-evil-and-good.gif'),
+    description: require('../resources/spell-gifs/5/dispel-evil-and-good-desc.jpg')
+  },
+  'dominate-person': {
+    level: 5,
+    gif: true,
+    image: require('../resources/spell-gifs/5/dominate-person.gif'),
+    description: require('../resources/spell-gifs/5/dominate-person-desc.jpg')
+  },
+  dream: {
+    level: 5,
+    gif: true,
+    image: require('../resources/spell-gifs/5/dream.gif'),
+    description: require('../resources/spell-gifs/5/dream-desc.jpg')
+  },
+  'flame-strike': {
+    level: 5,
+    gif: true,
+    image: require('../resources/spell-gifs/5/flame-strike.gif'),
+    description: require('../resources/spell-gifs/5/flame-strike-desc.jpg')
+  },
+  geas: {
+    level: 5,
+    gif: true,
+    image: require('../resources/spell-gifs/5/geas.gif'),
+    description: require('../resources/spell-gifs/5/geas-desc.jpg')
+  },
+  'greater-restoration': {
+    level: 5,
+    gif: true,
+    image: require('../resources/spell-gifs/5/greater-restoration.gif'),
+    description: require('../resources/spell-gifs/5/greater-restoration-desc.jpg')
+  },
+  hallow: {
+    level: 5,
+    gif: true,
+    image: require('../resources/spell-gifs/5/hallow.gif'),
+    description: require('../resources/spell-gifs/5/hallow-desc.jpg')
+  },
+  'hold-monster': {
+    level: 5,
+    gif: true,
+    image: require('../resources/spell-gifs/5/hold-monster.gif'),
+    description: require('../resources/spell-gifs/5/hold-monster-desc.jpg')
+  },
+  'insect-plague': {
+    level: 5,
+    gif: true,
+    image: require('../resources/spell-gifs/5/insect-plague.gif'),
+    description: require('../resources/spell-gifs/5/insect-plague-desc.jpg')
+  },
+  'legend-lore': {
+    level: 5,
+    gif: true,
+    image: require('../resources/spell-gifs/5/legend-lore.gif'),
+    description: require('../resources/spell-gifs/5/legend-lore-desc.jpg')
+  },
+  'mass-cure-wounds': {
+    level: 5,
+    gif: true,
+    image: require('../resources/spell-gifs/5/mass-cure-wounds.gif'),
+    description: require('../resources/spell-gifs/5/mass-cure-wounds-desc.jpg')
+  },
+  mislead: {
+    level: 5,
+    gif: true,
+    image: require('../resources/spell-gifs/5/mislead.gif'),
+    description: require('../resources/spell-gifs/5/mislead-desc.jpg')
+  },
+  'modify-memory': {
+    level: 5,
+    gif: true,
+    image: require('../resources/spell-gifs/5/modify-memory.gif'),
+    description: require('../resources/spell-gifs/5/modify-memory-desc.jpg')
+  },
+  passwall: {
+    level: 5,
+    gif: true,
+    image: require('../resources/spell-gifs/5/passwall.gif'),
+    description: require('../resources/spell-gifs/5/passwall-desc.jpg')
+  },
+  'planar-binding': {
+    level: 5,
+    gif: true,
+    image: require('../resources/spell-gifs/5/planar-binding.gif'),
+    description: require('../resources/spell-gifs/5/planar-binding-desc.jpg')
+  },
+  'raise-dead': {
+    level: 5,
+    gif: true,
+    image: require('../resources/spell-gifs/5/raise-dead.gif'),
+    description: require('../resources/spell-gifs/5/raise-dead-desc.jpg')
+  },
+  "rary's-telepathic-bond": {
+    level: 5,
+    gif: true,
+    image: require("../resources/spell-gifs/5/rary's-telepathic-bond.gif"),
+    description: require("../resources/spell-gifs/5/rary's-telepathic-bond-desc.jpg")
+  },
+  reincarnate: {
+    level: 5,
+    gif: true,
+    image: require('../resources/spell-gifs/5/reincarnate.gif'),
+    description: require('../resources/spell-gifs/5/reincarnate-desc.jpg')
+  },
+  scrying: {
+    level: 5,
+    gif: true,
+    image: require('../resources/spell-gifs/5/scrying.gif'),
+    description: require('../resources/spell-gifs/5/scrying-desc.jpg')
+  },
+  seeming: {
+    level: 5,
+    gif: true,
+    image: require('../resources/spell-gifs/5/seeming.gif'),
+    description: require('../resources/spell-gifs/5/seeming-desc.jpg')
+  },
+  'swift-quiver': {
+    level: 5,
+    gif: false,
+    'if-not-gif': {}
+  },
+  telekinesis: {
+    level: 5,
+    gif: true,
+    image: require('../resources/spell-gifs/5/telekinesis.gif'),
+    description: require('../resources/spell-gifs/5/telekinesis-desc.jpg')
+  },
+  'teleportation-circle': {
+    level: 5,
+    gif: true,
+    image: require('../resources/spell-gifs/5/teleportation-circle.gif'),
+    description: require('../resources/spell-gifs/5/teleportation-circle-desc.jpg')
+  },
+  'tree-stride': {
+    level: 5,
+    gif: true,
+    image: require('../resources/spell-gifs/5/tree-stride.gif'),
+    description: require('../resources/spell-gifs/5/tree-stride-desc.jpg')
+  },
+  'wall-of-force': {
+    level: 5,
+    gif: true,
+    image: require('../resources/spell-gifs/5/wall-of-force.gif'),
+    description: require('../resources/spell-gifs/5/wall-of-force-desc.jpg')
+  },
+  'wall-of-stone': {
+    level: 5,
+    gif: true,
+    image: require('../resources/spell-gifs/5/wall-of-stone.gif'),
+    description: require('../resources/spell-gifs/5/wall-of-stone-desc.jpg')
+  },
+  'arcane-gate': {
+    level: 6,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'blade-barrier': {
+    level: 6,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'chain-of-lightning': {
+    level: 6,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'circle-of-death': {
+    level: 6,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'conjure-fey': {
+    level: 6,
+    gif: false,
+    'if-not-gif': {}
+  },
+  contingency: {
+    level: 6,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'create-undead': {
+    level: 6,
+    gif: false,
+    'if-not-gif': {}
+  },
+  disintegrate: {
+    level: 6,
+    gif: false,
+    'if-not-gif': {}
+  },
+  "drawmij's-instant-summons": {
+    level: 6,
+    gif: false,
+    'if-not-gif': {}
+  },
+  eyebite: {
+    level: 6,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'find-the-path': {
+    level: 6,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'flesh-to-stone': {
+    level: 6,
+    gif: false,
+    'if-not-gif': {}
+  },
+  forbiddance: {
+    level: 6,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'globe-of-invulnerability': {
+    level: 6,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'guards-and-wards': {
+    level: 6,
+    gif: false,
+    'if-not-gif': {}
+  },
+  harm: {
+    level: 6,
+    gif: false,
+    'if-not-gif': {}
+  },
+  heal: {
+    level: 6,
+    gif: false,
+    'if-not-gif': {}
+  },
+  "heroes'-feast": {
+    level: 6,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'instant-summons': {
+    level: 6,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'magic-jar': {
+    level: 6,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'mass-suggestion': {
+    level: 6,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'move-earth': {
+    level: 6,
+    gif: false,
+    'if-not-gif': {}
+  },
+  "otiluke's-freezing-sphere": {
+    level: 6,
+    gif: false,
+    'if-not-gif': {}
+  },
+  "otto's-irresistible-dance": {
+    level: 6,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'planar-ally': {
+    level: 6,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'programmed-illusion': {
+    level: 6,
+    gif: false,
+    'if-not-gif': {}
+  },
+  sunbeam: {
+    level: 6,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'transport-via-plants': {
+    level: 6,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'true-seeing': {
+    level: 6,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'wall-of-ice': {
+    level: 6,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'wall-of-thorns': {
+    level: 6,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'wind-walk': {
+    level: 6,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'word-of-recall': {
+    level: 6,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'conjure-celestial': {
+    level: 7,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'delayed-blast-fireball': {
+    level: 7,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'divine-word': {
+    level: 7,
+    gif: false,
+    'if-not-gif': {}
+  },
+  etherealness: {
+    level: 7,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'finger-of-death': {
+    level: 7,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'fire-storm': {
+    level: 7,
+    gif: false,
+    'if-not-gif': {}
+  },
+  forcecage: {
+    level: 7,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'mirage-arcane': {
+    level: 7,
+    gif: false,
+    'if-not-gif': {}
+  },
+  "mordenkainen's-sword": {
+    level: 7,
+    gif: false,
+    'if-not-gif': {}
+  },
+  "mordenkainen's-magnificent-mansion": {
+    level: 7,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'plane-shift': {
+    level: 7,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'prismatic-spray': {
+    level: 7,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'project-image': {
+    level: 7,
+    gif: false,
+    'if-not-gif': {}
+  },
+  regenerate: {
+    level: 7,
+    gif: false,
+    'if-not-gif': {}
+  },
+  resurrection: {
+    level: 7,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'reverse-gravity': {
+    level: 7,
+    gif: false,
+    'if-not-gif': {}
+  },
+  sequester: {
+    level: 7,
+    gif: false,
+    'if-not-gif': {}
+  },
+  simulacrum: {
+    level: 7,
+    gif: false,
+    'if-not-gif': {}
+  },
+  symbol: {
+    level: 7,
+    gif: false,
+    'if-not-gif': {}
+  },
+  teleport: {
+    level: 7,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'animal-shapes': {
+    level: 8,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'antimagic-field': {
+    level: 8,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'antipathy-and-sympathy': {
+    level: 8,
+    gif: false,
+    'if-not-gif': {}
+  },
+  clone: {
+    level: 8,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'control-weather': {
+    level: 8,
+    gif: false,
+    'if-not-gif': {}
+  },
+  demiplane: {
+    level: 8,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'dominate-monster': {
+    level: 8,
+    gif: false,
+    'if-not-gif': {}
+  },
+  earthquake: {
+    level: 8,
+    gif: false,
+    'if-not-gif': {}
+  },
+  feeblemind: {
+    level: 8,
+    gif: false,
+    'if-not-gif': {}
+  },
+  glibness: {
+    level: 8,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'holy-aura': {
+    level: 8,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'incendiary-cloud': {
+    level: 8,
+    gif: false,
+    'if-not-gif': {}
+  },
+  maze: {
+    level: 8,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'mind-blank': {
+    level: 8,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'power-word-stun': {
+    level: 8,
+    gif: false,
+    'if-not-gif': {}
+  },
+  sunburst: {
+    level: 8,
+    gif: false,
+    'if-not-gif': {}
+  },
+  telepathy: {
+    level: 8,
+    gif: false,
+    'if-not-gif': {}
+  },
+  tsunami: {
+    level: 8,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'astral-projection': {
+    level: 9,
+    gif: false,
+    'if-not-gif': {}
+  },
+  foresight: {
+    level: 9,
+    gif: false,
+    'if-not-gif': {}
+  },
+  gate: {
+    level: 9,
+    gif: false,
+    'if-not-gif': {}
+  },
+  imprisonment: {
+    level: 9,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'mass-heal': {
+    level: 9,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'meteor-swarm': {
+    level: 9,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'power-word-heal': {
+    level: 9,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'power-word-kill': {
+    level: 9,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'prismatic-wall': {
+    level: 9,
+    gif: false,
+    'if-not-gif': {}
+  },
+  shapechange: {
+    level: 9,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'storm-of-vengeance': {
+    level: 9,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'time-stop': {
+    level: 9,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'true-polymorph': {
+    level: 9,
+    gif: false,
+    'if-not-gif': {}
+  },
+  'true-resurrection': {
+    level: 9,
+    gif: false,
+    'if-not-gif': {}
+  },
+  weird: {
+    level: 9,
+    gif: false,
+    'if-not-gif': {}
+  },
+  wish: {
+    level: 9,
+    gif: false,
+    'if-not-gif': {}
   }
 };
 
