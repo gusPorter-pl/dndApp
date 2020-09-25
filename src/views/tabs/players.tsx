@@ -1,7 +1,6 @@
 import React, {PureComponent} from 'react';
-import {View, Text, Image} from 'react-native';
+import {View, Text} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-// import Dialog, {DialogContent} from 'react-native-popup-dialog';
 import {connect} from 'react-redux';
 
 import MainNavProps from '../navigation';
@@ -14,8 +13,6 @@ import {Player} from '../../common/types';
 import Box from '../../common/components/box';
 import Header from '../../common/components/header';
 
-const box1 = require('../../resources/boxes/empty.jpg');
-
 interface LocalState {
   playerOptions: string;
   visible: boolean;
@@ -26,10 +23,7 @@ interface StateProps {
 }
 
 interface DispatchProps {
-  addPlayer: (player: Player) => void;
   removePlayer: (name: string) => void; // Change this from string -> Player
-  changeInitiative: (player: Player, initiative: number) => void; // Make this edit player
-  changeColour: (player: Player) => void;
   savePlayers: (players: Player[]) => void;
   getPlayers: () => void;
 }
@@ -158,20 +152,6 @@ class Players extends PureComponent<Props, LocalState> {
               />
             </View>
           </KeyboardAwareScrollView>
-          {/* <Dialog
-            visible={this.state.visible}
-            onTouchOutside={() => {
-              this.setState({visible: false});
-            }}
-          >
-            <DialogContent>
-              <View style={{width: '85%', padding: 10}}>
-                <Text style={{textAlign: 'center', fontSize: 18}}>
-                  Are you sure you want to delete this character?
-                </Text>
-              </View>
-            </DialogContent>
-          </Dialog> */}
         </View>
       </>
     );
@@ -183,19 +163,8 @@ const mapStateToProps = (state: State): StateProps => ({
 });
 
 const mapDispatchToProps = (dispatch: StoreDispatch): DispatchProps => ({
-  addPlayer: (player: Player): void => {
-    dispatch(actions.addPlayer(player));
-  },
   removePlayer: (name: string): void => {
     dispatch(actions.removePlayer(name));
-  },
-  changeColour: (player: Player): void => {
-    const updatedPlayer = {...player, reaction: !player.reaction};
-    dispatch(actions.editPlayer(updatedPlayer));
-  },
-  changeInitiative: (player: Player, initiative: number): void => {
-    const updatedPlayer = {...player, initiative};
-    dispatch(actions.editPlayer(updatedPlayer));
   },
   getPlayers: async (): Promise<void> => {
     const promise = storage.getPlayers();

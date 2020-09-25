@@ -8,7 +8,6 @@ import * as actions from '../redux/actions';
 import * as storage from '../services/storage';
 import {State} from '../redux/reducer';
 import {StoreDispatch} from '../redux/store';
-import colours from '../common/colours';
 import {capitalise} from '../common/functions';
 import styles from '../common/styles';
 import {Player} from '../common/types';
@@ -18,8 +17,10 @@ import Header from '../common/components/header';
 interface LocalState {
   type: 'add' | 'edit';
   oldName: string;
+  newInitiativeModifier: number | '';
   player?: Player;
   justOpened: boolean;
+  correctFormat: boolean;
 }
 
 interface StateProps {
@@ -42,6 +43,7 @@ class PlayerAddEdit extends PureComponent<Props, LocalState> {
     this.state = {
       type,
       oldName: type === 'edit' ? player.name : '',
+      newInitiativeModifier: '',
       player:
         type === 'add'
           ? {
@@ -51,18 +53,12 @@ class PlayerAddEdit extends PureComponent<Props, LocalState> {
               reaction: true
             }
           : player,
-      justOpened: true
+      justOpened: true,
+      correctFormat: true
     };
   }
 
-  // public componentDidMount() {
-  //   this.props.navigation.addListener('blur', () => {
-  //   });
-  // }
-
   public render() {
-    // console.info(this.state.player);
-    // console.info(this.state.oldName);
     return (
       <>
         <Header title={capitalise(this.state.type) + ' Player'} />
@@ -87,11 +83,8 @@ class PlayerAddEdit extends PureComponent<Props, LocalState> {
               keyboardType="numeric"
               onChangeText={(modifierText) => {
                 this.setState({
-                  player: {
-                    ...this.state.player,
-                    initiativeModifier:
-                      modifierText !== '' ? parseInt(modifierText) : 0
-                  },
+                  newInitiativeModifier:
+                    modifierText !== '' ? parseInt(modifierText) : '',
                   justOpened: false
                 });
               }}
@@ -115,18 +108,36 @@ class PlayerAddEdit extends PureComponent<Props, LocalState> {
                 text="Save Player"
                 type={0}
                 function={async () => {
-                  if (this.state.type === 'add') {
-                    await this.props.addPlayer(this.state.player);
-                  } else if (this.state.type === 'edit') {
-                    await this.props.editPlayer(
-                      this.state.oldName,
-                      this.state.player
-                    );
+                  const player = this.state.player;
+                  if (
+                    player.name === '' ||
+                    this.state.newInitiativeModifier === ''
+                  ) {
+                    this.setState({correctFormat: false});
+                  } else {
+                    if (this.state.type === 'add') {
+                      await this.props.addPlayer({
+                        ...player,
+                        initiativeModifier: this.state.newInitiativeModifier
+                      });
+                    } else if (this.state.type === 'edit') {
+                      await this.props.editPlayer(this.state.oldName, {
+                        ...player,
+                        initiativeModifier: this.state.newInitiativeModifier
+                      });
+                    }
+                    this.props.savePlayers(this.props.players);
+                    this.props.navigation.goBack();
                   }
-                  this.props.savePlayers(this.props.players);
-                  this.props.navigation.goBack();
                 }}
               />
+              {!this.state.correctFormat && (
+                <View style={{paddingVertical: 3}}>
+                  <Text style={{textAlign: 'center', fontSize: 16}}>
+                    Fill in all of the boxes!
+                  </Text>
+                </View>
+              )}
               <Box
                 text="Cancel and Go Back"
                 type={0}
@@ -142,9 +153,6 @@ class PlayerAddEdit extends PureComponent<Props, LocalState> {
   }
 }
 
-// const playerAddEditStyles = StyleSheet.create({
-// });
-
 const mapStateToProps = (state: State): StateProps => ({
   players: state.players
 });
@@ -156,7 +164,6 @@ const mapDispatchToProps = (dispatch: StoreDispatch): DispatchProps => ({
   editPlayer: (oldName: string, player: Player): void => {
     dispatch(actions.removePlayer(oldName));
     dispatch(actions.addPlayer(player));
-    // dispatch(actions.editPlayer(player));
   },
   savePlayers: (players: Player[]): void => {
     storage.savePlayers(players);
