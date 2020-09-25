@@ -41,10 +41,10 @@ class Players extends PureComponent<Props, LocalState> {
       this.props.getPlayers();
     }
 
-    if (this.props.players) {
-      this.props.players.sort((p, q) => (q.name > p.name ? -1 : 1));
-      // Sort in alphabetical order
-    }
+    // if (this.props.players) {
+    //   this.props.players.sort((p, q) => (q.name > p.name ? -1 : 1));
+    //   // Sort in alphabetical order
+    // }
   }
 
   public componentDidMount() {
@@ -173,6 +173,7 @@ const mapDispatchToProps = (dispatch: StoreDispatch): DispatchProps => ({
     });
   },
   savePlayers: (players: Player[]): void => {
+    players.sort((p, q) => (q.name > p.name ? -1 : 1));
     storage.savePlayers(players);
   }
 });
