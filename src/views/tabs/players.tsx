@@ -1,6 +1,7 @@
 import React, {PureComponent} from 'react';
-import {View, Button, TextInput} from 'react-native';
+import {View, Text, Image} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+// import Dialog, {DialogContent} from 'react-native-popup-dialog';
 import {connect} from 'react-redux';
 
 import MainNavProps from '../navigation';
@@ -8,14 +9,16 @@ import * as actions from '../../redux/actions';
 import {State} from '../../redux/reducer';
 import {StoreDispatch} from '../../redux/store';
 import * as storage from '../../services/storage';
-import colours from '../../common/colours';
 import styles from '../../common/styles';
 import {Player} from '../../common/types';
 import Box from '../../common/components/box';
 import Header from '../../common/components/header';
 
+const box1 = require('../../resources/boxes/empty.jpg');
+
 interface LocalState {
-  playerEdit: string;
+  playerOptions: string;
+  visible: boolean;
 }
 
 interface StateProps {
@@ -37,17 +40,9 @@ class Players extends PureComponent<Props, LocalState> {
   public constructor(props: Props) {
     super(props);
     this.state = {
-      playerEdit: ''
+      playerOptions: '',
+      visible: false
     };
-  }
-
-  public componentDidMount() {
-    this.props.navigation.addListener('blur', () => {
-      this.setState({playerEdit: ''});
-    });
-  }
-
-  public render() {
     if (this.props.players.length == 0) {
       this.props.getPlayers();
     }
@@ -56,6 +51,15 @@ class Players extends PureComponent<Props, LocalState> {
       this.props.players.sort((p, q) => (q.name > p.name ? -1 : 1));
       // Sort in alphabetical order
     }
+  }
+
+  public componentDidMount() {
+    this.props.navigation.addListener('blur', () => {
+      this.setState({playerOptions: ''});
+    });
+  }
+
+  public render() {
     return (
       <>
         <Header title={this.props.route.name} />
@@ -65,36 +69,78 @@ class Players extends PureComponent<Props, LocalState> {
               return (
                 <View key={player.name}>
                   <Box
-                    text={player.name}
+                    text={
+                      player.characterType === 'PC'
+                        ? player.name
+                        : player.name + ' (NPC)'
+                    }
                     type={0}
                     function={() => {
                       this.setState({
-                        playerEdit:
-                          player.name === this.state.playerEdit
+                        playerOptions:
+                          player.name === this.state.playerOptions
                             ? ''
-                            : player.name
+                            : player.name,
+                        visible: false
                       });
                     }}
                   />
-                  {player.name === this.state.playerEdit && (
-                    <View style={{paddingHorizontal: 25, paddingVertical: 10}}>
-                      <TextInput
-                        defaultValue={player.name}
-                        placeholder="Name"
-                        style={styles.textInput}
-                      />
-                      <TextInput
-                        defaultValue={player.initiative.toString()}
-                        placeholder="Initiative"
-                        style={styles.textInput}
-                      />
-                      <Button
-                        title="Update Player"
-                        color={colours.grey}
-                        onPress={() => {
-                          // update player
+                  {player.name === this.state.playerOptions && (
+                    <View style={{paddingHorizontal: 30, paddingVertical: 10}}>
+                      <Box
+                        text="Edit Player"
+                        type={1}
+                        function={() => {
+                          this.props.navigation.navigate('PlayerAddEdit', {
+                            type: 'edit',
+                            player
+                          });
                         }}
                       />
+                      <View style={{paddingTop: 5}} />
+                      <Box
+                        text="Delete Player"
+                        type={1}
+                        function={() => {
+                          this.setState({visible: true});
+                        }}
+                      />
+                      {this.state.visible && (
+                        <View>
+                          <Text style={{textAlign: 'center'}}>
+                            Are you sure you want to delete this player?
+                          </Text>
+                          <View
+                            style={{
+                              flexDirection: 'row',
+                              justifyContent: 'space-evenly',
+                              paddingTop: 7
+                            }}
+                          >
+                            <View>
+                              <Box
+                                text="Yes"
+                                type={2}
+                                isRow={true}
+                                function={async () => {
+                                  await this.props.removePlayer(player.name);
+                                  this.props.savePlayers(this.props.players);
+                                }}
+                              />
+                            </View>
+                            <View>
+                              <Box
+                                text="No"
+                                type={2}
+                                isRow={true}
+                                function={() => {
+                                  this.setState({visible: false});
+                                }}
+                              />
+                            </View>
+                          </View>
+                        </View>
+                      )}
                     </View>
                   )}
                 </View>
@@ -105,11 +151,27 @@ class Players extends PureComponent<Props, LocalState> {
                 text="Add PC or NPC"
                 type={0}
                 function={() => {
-                  this.props.navigation.navigate('PlayerAdd');
+                  this.props.navigation.navigate('PlayerAddEdit', {
+                    type: 'add'
+                  });
                 }}
               />
             </View>
           </KeyboardAwareScrollView>
+          {/* <Dialog
+            visible={this.state.visible}
+            onTouchOutside={() => {
+              this.setState({visible: false});
+            }}
+          >
+            <DialogContent>
+              <View style={{width: '85%', padding: 10}}>
+                <Text style={{textAlign: 'center', fontSize: 18}}>
+                  Are you sure you want to delete this character?
+                </Text>
+              </View>
+            </DialogContent>
+          </Dialog> */}
         </View>
       </>
     );
