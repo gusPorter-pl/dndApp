@@ -1,6 +1,5 @@
-Players Page: 
-  Add edit page
-  Switch in edit and remove from update stuff
+Players Page:
+  Done! (for the time being)
 
 Initiative Page:
   Add a begin initiative page that goes onto actual initiative page (hooked to stack navigator)
