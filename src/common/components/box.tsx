@@ -22,7 +22,6 @@ interface Props {
 }
 
 export default function Box(props: Props) {
-  console.info(props.text + ': ' + (props.type === 2).toString());
   return (
     <TouchableOpacity
       onPress={() => {
@@ -38,7 +37,13 @@ export default function Box(props: Props) {
         {props.type === 1 && <Image source={box2} style={boxStyles.size} />}
         {props.type === 2 && <Image source={box3} style={boxStyles.size} />}
         <View style={boxStyles.overlapView}>
-          <Text style={boxStyles.overlapText}>{props.text}</Text>
+          <Text
+            adjustsFontSizeToFit
+            numberOfLines={1}
+            style={boxStyles.overlapText}
+          >
+            {props.text}
+          </Text>
         </View>
       </View>
     </TouchableOpacity>
