@@ -2,20 +2,26 @@ import React, {PureComponent} from 'react';
 import {
   View,
   Text,
+  Image,
   Button,
   ScrollView,
   StyleSheet,
-  TextInput
+  TextInput,
+  TouchableOpacity
 } from 'react-native';
 import {connect} from 'react-redux';
 
 import MainNavProps from '../navigation';
+import * as actions from '../../redux/actions';
 import {State} from '../../redux/reducer';
 import {StoreDispatch} from '../../redux/store';
 import styles from '../../common/styles';
 import {Player} from '../../common/types';
+import colours from '../../common/colours';
 import Box from '../../common/components/box';
 import Header from '../../common/components/header';
+
+const box = require('../../resources/boxes/other-empty.jpg');
 
 interface LocalState {
   currentSection: 'choosePlayers' | 'assignInitiatives' | 'startInitiative';
@@ -44,9 +50,18 @@ class Initiative extends PureComponent<Props, LocalState> {
   }
 
   public render() {
-    if (this.props.players) {
-      this.props.players.sort((p, q) => q.initiative - p.initiative);
-      // Sort by initiative in descending order
+    if (
+      this.state.addedPlayers &&
+      this.state.currentSection === 'startInitiative'
+    ) {
+      this.state.addedPlayers.sort((a, b) => {
+        // Sort by initiative in descending order
+        if (a.initiative !== b.initiative) {
+          return b.initiative - a.initiative;
+        } else {
+          return b.initiativeModifier - b.initiativeModifier;
+        }
+      });
     }
 
     const notAddedPlayers = this.props.players.filter((player) => {
@@ -59,7 +74,6 @@ class Initiative extends PureComponent<Props, LocalState> {
       return true;
     });
 
-    console.info(this.state.addedPlayers);
     return (
       <>
         <Header title={this.props.route.name} />
@@ -195,93 +209,136 @@ class Initiative extends PureComponent<Props, LocalState> {
 
         {/* Start Initiatives */}
         {this.state.currentSection === 'startInitiative' && (
-          <View style={styles.body}>
-            <Text>{JSON.stringify(this.state.addedPlayers)}</Text>
-            {/* <View style={}>
-              <View
-                style={{
-                  flex: 3,
-                  paddingRight: 5,
-                  justifyContent: 'center'
-                }}
-              >
-                
-              </View>
-              <View style={{flex: 2}}>
-                <Button
-                  title="Reaction"
-                  color={player.reaction ? colours.green : colours.red}
-                  onPress={() => {}}
-                />
-              </View>
-              <View style={{justifyContent: 'center', paddingLeft: 5}}>
-                <Text style={initiativeStyles.initiativeNumber}>
-                  {player.initiative}
-                </Text>
-              </View>
-            </View> */}
-            <View>
-              <Box
-                text="Finish Initiative"
-                type={0}
-                function={() => {
-                  this.setState({end: true});
-                }}
-              />
-              {this.state.end && (
-                <View>
-                  <Text style={{textAlign: 'center'}}>
-                    Are you sure you want to leave initiative?
-                  </Text>
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      justifyContent: 'space-evenly',
-                      paddingTop: 7
-                    }}
-                  >
-                    <View>
-                      <Box
-                        text="Yes"
-                        type={2}
-                        isRow={true}
-                        function={async () => {
-                          // this.props.navigation.navigate('Tabs');
-                          await this.setState({addedPlayers: []});
-                          this.setState({
-                            currentSection: 'choosePlayers',
-                            end: false
-                          });
-                        }}
-                      />
+          <ScrollView>
+            <View style={styles.body}>
+              {this.state.addedPlayers.map((player) => {
+                return (
+                  <TouchableOpacity activeOpacity={1}>
+                    <View style={[styles.centre]}>
+                      <Image source={box} style={boxStyles.size} />
+                      <View style={boxStyles.overlapView}>
+                        <View
+                          style={{
+                            flex: 2,
+                            paddingRight: 5,
+                            justifyContent: 'center'
+                          }}
+                        >
+                          <Text
+                            adjustsFontSizeToFit
+                            numberOfLines={1}
+                            style={boxStyles.overlapText}
+                          >
+                            {player.name}
+                          </Text>
+                        </View>
+                        <View style={{flex: 1}}>
+                          <Button
+                            title="REACTION"
+                            color={
+                              player.reaction ? colours.green : colours.red
+                            }
+                            onPress={() => {
+                              player = {...player, reaction: !player.reaction};
+                              this.setState({
+                                addedPlayers: this.state.addedPlayers.map(
+                                  (otherPlayer) =>
+                                    otherPlayer.name === player.name
+                                      ? player
+                                      : otherPlayer
+                                )
+                              });
+                            }}
+                          />
+                        </View>
+                        <View
+                          style={{
+                            justifyContent: 'center',
+                            paddingLeft: 10,
+                            paddingRight: 22
+                          }}
+                        >
+                          <Text style={[boxStyles.overlapText, {width: 30}]}>
+                            {player.initiative}
+                          </Text>
+                        </View>
+                      </View>
                     </View>
-                    <View>
-                      <Box
-                        text="No"
-                        type={2}
-                        isRow={true}
-                        function={() => {
-                          this.setState({end: false});
-                        }}
-                      />
+                  </TouchableOpacity>
+                );
+              })}
+              <View style={{paddingTop: 10, paddingHorizontal: 10}}>
+                <Box
+                  text="Finish Initiative"
+                  type={0}
+                  function={() => {
+                    this.setState({end: true});
+                  }}
+                />
+                {this.state.end && (
+                  <View>
+                    <Text style={{textAlign: 'center'}}>
+                      Are you sure you want to leave initiative?
+                    </Text>
+                    <View
+                      style={{
+                        flexDirection: 'row',
+                        justifyContent: 'space-evenly',
+                        paddingTop: 7
+                      }}
+                    >
+                      <View>
+                        <Box
+                          text="Yes"
+                          type={2}
+                          isRow={true}
+                          function={async () => {
+                            await this.setState({addedPlayers: []});
+                            this.setState({
+                              currentSection: 'choosePlayers',
+                              end: false
+                            });
+                          }}
+                        />
+                      </View>
+                      <View>
+                        <Box
+                          text="No"
+                          type={2}
+                          isRow={true}
+                          function={() => {
+                            this.setState({end: false});
+                          }}
+                        />
+                      </View>
                     </View>
                   </View>
-                </View>
-              )}
+                )}
+              </View>
             </View>
-          </View>
+          </ScrollView>
         )}
       </>
     );
   }
 }
 
-const initiativeStyles = StyleSheet.create({
-  initiativeNumber: {
-    width: 30,
-    fontSize: 18,
+const boxStyles = StyleSheet.create({
+  size: {
+    width: '100%',
+    height: 60,
+    resizeMode: 'stretch'
+  },
+  overlapView: {
+    position: 'absolute',
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  overlapText: {
     textAlign: 'center',
-    alignItems: 'center'
+    paddingTop: 2,
+    color: colours.black,
+    fontSize: 20
   }
 });
 
