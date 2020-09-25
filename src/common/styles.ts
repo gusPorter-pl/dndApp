@@ -17,14 +17,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center'
   },
-  innerBody: {
-    padding: 10,
-    borderBottomWidth: 1,
-    borderLeftWidth: 1,
-    borderRightWidth: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  },
   textInput: {
     backgroundColor: colours.white,
     marginVertical: 5,
