@@ -291,7 +291,7 @@ class Initiative extends PureComponent<Props, LocalState> {
                         <Box
                           text="Yes"
                           type={2}
-                          isRow={true}
+                          // isRow={true}
                           function={async () => {
                             await this.setState({addedPlayers: []});
                             this.setState({
@@ -305,7 +305,7 @@ class Initiative extends PureComponent<Props, LocalState> {
                         <Box
                           text="No"
                           type={2}
-                          isRow={true}
+                          // isRow={true}
                           function={() => {
                             this.setState({end: false});
                           }}

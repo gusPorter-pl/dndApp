@@ -115,7 +115,7 @@ class Players extends PureComponent<Props, LocalState> {
                               <Box
                                 text="Yes"
                                 type={2}
-                                isRow={true}
+                                // isRow={true}
                                 function={async () => {
                                   await this.props.removePlayer(player.name);
                                   this.props.savePlayers(this.props.players);
@@ -126,7 +126,7 @@ class Players extends PureComponent<Props, LocalState> {
                               <Box
                                 text="No"
                                 type={2}
-                                isRow={true}
+                                // isRow={true}
                                 function={() => {
                                   this.setState({visible: false});
                                 }}
