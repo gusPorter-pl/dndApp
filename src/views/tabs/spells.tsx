@@ -68,10 +68,12 @@ class Spells extends PureComponent<Props> {
                     type={1}
                     style={{paddingVertical: 3}}
                     function={() => {
-                      this.props.navigation.navigate('SpellDisplay', {
-                        spellName: spell,
-                        spell: spells[spell]
-                      });
+                      if (spells[spell].gif) {
+                        this.props.navigation.navigate('SpellDisplay', {
+                          spellName: spell,
+                          spell: spells[spell]
+                        });
+                      }
                     }}
                   />
                 );

@@ -1,14 +1,5 @@
-Players Page:
-  Done! (for the time being)
-
-Initiative Page:
-  Done! (for the time being)
-
 Spells Page:
   Add rest of spells descriptions
   Add spell info for spells with no gif
   Have search incorporate arrays to not limit results
   Add previously viewed spells in redux to display
-
-Also add markdown file describing repo
-  With switch out spell files and gifs

@@ -11,10 +11,13 @@ import SpellNavProps from './navigation';
 import colours from '../common/colours';
 import spells from '../common/spells';
 import styles from '../common/styles';
-import BackButton from '../common/components/backButton';
+import {BackButton, ChangeDescription} from '../common/components/buttons';
 
 type LocalState = {
   gifSelect: boolean;
+  descriptionImages: number[];
+  multipleDescriptions: boolean;
+  descriptionChoice: number;
 };
 
 type Props = SpellNavProps<'SpellDisplay'>;
@@ -22,23 +25,43 @@ type Props = SpellNavProps<'SpellDisplay'>;
 class SpellDisplay extends PureComponent<Props, LocalState> {
   public constructor(props: Props) {
     super(props);
+    const spellName = this.props.route.params.spellName;
     this.state = {
-      gifSelect: true
+      gifSelect: true,
+      descriptionImages: spells[spellName].description,
+      multipleDescriptions: spells[spellName].description.length > 1,
+      descriptionChoice: 0
     };
   }
 
   public render() {
-    const spell = this.props.route.params.spell;
     const spellName = this.props.route.params.spellName;
+    const spell = this.props.route.params.spell;
     return (
       <>
         <StatusBar backgroundColor={colours.black} />
-        <BackButton
-          function={() => {
-            this.props.navigation.goBack();
-          }}
-        />
-        <View style={[styles.body, {padding: 0}]}>
+        <View
+          style={[
+            styles.horizontalItems,
+            {backgroundColor: colours.black, justifyContent: 'space-between'}
+          ]}
+        >
+          <BackButton
+            function={() => {
+              this.props.navigation.goBack();
+            }}
+          />
+          {this.state.multipleDescriptions && !this.state.gifSelect && (
+            <ChangeDescription
+              function={() => {
+                this.setState({
+                  descriptionChoice: (this.state.descriptionChoice + 1) % 2
+                });
+              }}
+            />
+          )}
+        </View>
+        <View style={[styles.body, {padding: 0, flex: 1}]}>
           {spell.gif && (
             <TouchableOpacity
               onPress={() => {
@@ -54,7 +77,9 @@ class SpellDisplay extends PureComponent<Props, LocalState> {
               )}
               {!this.state.gifSelect && (
                 <Image
-                  source={spells[spellName].description}
+                  source={
+                    this.state.descriptionImages[this.state.descriptionChoice]
+                  }
                   style={spellDisplayStyles.gif}
                 />
               )}

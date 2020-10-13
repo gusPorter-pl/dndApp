@@ -58,8 +58,11 @@ class Initiative extends PureComponent<Props, LocalState> {
         // Sort by initiative in descending order
         if (a.initiative !== b.initiative) {
           return b.initiative - a.initiative;
+        } else if (a.initiativeModifier !== b.initiativeModifier) {
+          return b.initiativeModifier - a.initiativeModifier;
         } else {
-          return b.initiativeModifier - b.initiativeModifier;
+          if (a.name > b.name) return 1;
+          else return -1;
         }
       });
     }
@@ -81,63 +84,73 @@ class Initiative extends PureComponent<Props, LocalState> {
         {/* Choose Players */}
         {this.state.currentSection === 'choosePlayers' && (
           <View style={styles.body}>
-            {this.state.addedPlayers.length > 0 && (
-              <View style={{paddingVertical: 5}}>
-                <Text style={{textAlign: 'center', fontSize: 24}}>
-                  Added Players
-                </Text>
-              </View>
-            )}
-            {this.state.addedPlayers.map((player) => {
-              return (
-                <View key={player.name}>
+            <ScrollView>
+              {this.state.addedPlayers.length > 0 && (
+                <View style={{paddingVertical: 5}}>
+                  <Text style={{textAlign: 'center', fontSize: 24}}>
+                    Added Players
+                  </Text>
+                </View>
+              )}
+              {this.state.addedPlayers.map((player) => {
+                return (
+                  <View key={player.name}>
+                    <Box
+                      text={
+                        player.characterType === 'PC'
+                          ? player.name
+                          : player.name + ' (NPC)'
+                      }
+                      type={0}
+                      function={() => {
+                        this.setState({
+                          addedPlayers: this.state.addedPlayers.filter(
+                            (otherPlayer) => player !== otherPlayer
+                          )
+                        });
+                      }}
+                    />
+                  </View>
+                );
+              })}
+              {this.state.addedPlayers.length > 0 && (
+                <View style={{paddingTop: 10, paddingHorizontal: 10}}>
                   <Box
-                    text={player.name}
-                    type={0}
+                    text="Set Up Initiative"
+                    type={1}
                     function={() => {
-                      this.setState({
-                        addedPlayers: this.state.addedPlayers.filter(
-                          (otherPlayer) => player !== otherPlayer
-                        )
-                      });
+                      this.setState({currentSection: 'assignInitiatives'});
                     }}
                   />
                 </View>
-              );
-            })}
-            {this.state.addedPlayers.length > 0 && (
-              <View style={{paddingTop: 10, paddingHorizontal: 10}}>
-                <Box
-                  text="Set Up Initiative"
-                  type={1}
-                  function={() => {
-                    this.setState({currentSection: 'assignInitiatives'});
-                  }}
-                />
-              </View>
-            )}
-            {notAddedPlayers.length > 0 && (
-              <View style={{paddingTop: 20, paddingBottom: 5}}>
-                <Text style={{textAlign: 'center', fontSize: 24}}>
-                  Not Added Players
-                </Text>
-              </View>
-            )}
-            {notAddedPlayers.map((player) => {
-              return (
-                <View key={player.name}>
-                  <Box
-                    text={player.name}
-                    type={0}
-                    function={() => {
-                      this.setState({
-                        addedPlayers: [...this.state.addedPlayers, player]
-                      });
-                    }}
-                  />
+              )}
+              {notAddedPlayers.length > 0 && (
+                <View style={{paddingTop: 20, paddingBottom: 5}}>
+                  <Text style={{textAlign: 'center', fontSize: 24}}>
+                    Not Added Players
+                  </Text>
                 </View>
-              );
-            })}
+              )}
+              {notAddedPlayers.map((player) => {
+                return (
+                  <View key={player.name}>
+                    <Box
+                      text={
+                        player.characterType === 'PC'
+                          ? player.name
+                          : player.name + ' (NPC)'
+                      }
+                      type={0}
+                      function={() => {
+                        this.setState({
+                          addedPlayers: [...this.state.addedPlayers, player]
+                        });
+                      }}
+                    />
+                  </View>
+                );
+              })}
+            </ScrollView>
           </View>
         )}
 
@@ -148,7 +161,14 @@ class Initiative extends PureComponent<Props, LocalState> {
               {this.state.addedPlayers.map((player) => {
                 return (
                   <View>
-                    <Box text={player.name} type={0} />
+                    <Box
+                      text={
+                        player.characterType === 'PC'
+                          ? player.name
+                          : player.name + ' (NPC)'
+                      }
+                      type={0}
+                    />
                     <View style={{alignItems: 'center'}}>
                       <TextInput
                         style={[styles.textInput, {width: '90%'}]}
@@ -291,7 +311,7 @@ class Initiative extends PureComponent<Props, LocalState> {
                         <Box
                           text="Yes"
                           type={2}
-                          isRow={true}
+                          // isRow={true}
                           function={async () => {
                             await this.setState({addedPlayers: []});
                             this.setState({
@@ -305,7 +325,7 @@ class Initiative extends PureComponent<Props, LocalState> {
                         <Box
                           text="No"
                           type={2}
-                          isRow={true}
+                          // isRow={true}
                           function={() => {
                             this.setState({end: false});
                           }}
